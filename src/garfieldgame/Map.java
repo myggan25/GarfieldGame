@@ -1,4 +1,4 @@
-package garfield;
+package garfieldgame;
 
 public class Map {
 	private final int lowDefaultXCoordObstacle=600, highDefaultXCoordObstacle=300;
@@ -17,7 +17,7 @@ public class Map {
 		
 		
 		/****************************
-		 * Dessa saker är i testsyfte
+		 * Dessa saker ï¿½r i testsyfte
 		 ****************************/
 		obstacle = new Obstacle(100, 100, 500, lowDefaultXCoordObstacle);
 		alcohol = new Powerbottle(20, 10, 500, 500);
@@ -35,12 +35,12 @@ public class Map {
 	}
 	
 	public boolean checkIfObstacleOnScreen(){
-		//Kolla om det finns något hinder på skärmen just då
+		//Kolla om det finns nï¿½got hinder pï¿½ skï¿½rmen just dï¿½
 		return false;
 	}
 	
 	public boolean checkIfPowerbottleOnScreen(){
-		//Kolla om det finns någon powerup på skämrne just då
+		//Kolla om det finns nï¿½gon powerup pï¿½ skï¿½mrne just dï¿½
 		return false;
 	}
 	
@@ -53,22 +53,22 @@ public class Map {
 	}
 	
 	public Obstacle getObstacle(){
-		//Hämta obstacle från Obstacle
+		//Hï¿½mta obstacle frï¿½n Obstacle
 		return obstacle;
 	}
 	
 	public Obstacle getObstacleInBoard(){
-		//Hämta obstacle om den är i gameBoard
+		//Hï¿½mta obstacle om den ï¿½r i gameBoard
 		return obstacle;
 	}
 	
 	public Powerbottle getPowerbottle(){
-		//Hämta powerbottle från Powerbottle
+		//Hï¿½mta powerbottle frï¿½n Powerbottle
 		return alcohol;
 	}
 	
 	public Powerbottle getPowerbottleInBoard(){
-		//Hämta powerbottle om den är i gameBoard
+		//Hï¿½mta powerbottle om den ï¿½r i gameBoard
 		return alcohol;
 	}
 	
@@ -86,12 +86,12 @@ public class Map {
 	}
 	
 	public void addObstacle(Obstacle obs){
-		//ska egentligen lägga in i en array
+		//ska egentligen lï¿½gga in i en array
 		obstacle = obs;
 	}
 	
 	public void addPowerbottle(Powerbottle pb){
-		//ska egentligen lägga in i en array
+		//ska egentligen lï¿½gga in i en array
 		alcohol = pb;
 	}
 

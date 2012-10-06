@@ -1,64 +1,64 @@
-package garfield;
+package garfieldgame;
 
 public class GameHandler {
 
 	public boolean checkIfFalling(){
-		//Kolla om spelaren har något "fast" under sig
+		//Kolla om spelaren har nï¿½got "fast" under sig
 		return false;
 	}
 	
 	public void fall(){
-		//Gör så att spelaren faller
+		//Gï¿½r sï¿½ att spelaren faller
 	}
 	
 	public void checkIfHitOnBoard(Player player, Obstacle obstacle, Powerbottle powerbottle){
-		//Gör kontinuerligt kollar för att kolla om det uppstår en kollision
+		//Gï¿½r kontinuerligt kollar fï¿½r att kolla om det uppstï¿½r en kollision
 	}
 	
 	/*****************************************
-	 *SANNINGSVÄRDEN FÖR KOLLISION MED HINDER*
+	 *SANNINGSVï¿½RDEN Fï¿½R KOLLISION MED HINDER*
 	 *****************************************/
 	
 	private boolean hitObstacle(Player player, Obstacle obstacle){
-		//Kör kollisionskoll för alla värden
-		//Använder sig av nedanstående metoder
+		//Kï¿½r kollisionskoll fï¿½r alla vï¿½rden
+		//Anvï¿½nder sig av nedanstï¿½ende metoder
 		return false;
 	}
 	
 	private boolean hitObstacleUp(Player player, Obstacle obstacle){
-		//Skapa sanningsvärde för om spelaren hoppar in i ett object
+		//Skapa sanningsvï¿½rde fï¿½r om spelaren hoppar in i ett object
 		return false;
 	}
 	private boolean hitObstacleRight(Player player, Obstacle obstacle){
-		//Skapa sanningsvärde för om spelaren springer in i ett object
+		//Skapa sanningsvï¿½rde fï¿½r om spelaren springer in i ett object
 		return false;
 	}
 	private boolean hitObstacleDown(Player player, Obstacle obstacle){
-		//Skapa sannisgsvärde för om spelaren landar på ett object
+		//Skapa sannisgsvï¿½rde fï¿½r om spelaren landar pï¿½ ett object
 		return false;
 	}
 		
 
 	/*******************************************
-	 *SANNINGSVÄRDEN FÖR KOLLISION MED POWERUPS*
+	 *SANNINGSVï¿½RDEN Fï¿½R KOLLISION MED POWERUPS*
 	 *******************************************/
 	
 	private boolean hitPowerbottle(Player player, Powerbottle powerbottle){
-		//Kör kollisionskoll för alla värden
-		//Använder sig av nedanstående metoder
+		//Kï¿½r kollisionskoll fï¿½r alla vï¿½rden
+		//Anvï¿½nder sig av nedanstï¿½ende metoder
 		return false;
 	}
 	
 	private boolean hitPowerbottleUp(Player player, Powerbottle powerbottle){
-		//Skapa sanningsvärde för om spelaren hoppar in i en powerup
+		//Skapa sanningsvï¿½rde fï¿½r om spelaren hoppar in i en powerup
 		return false;
 	}
 	private boolean hitPowerbottleRight(Player player, Powerbottle powerbottle){
-		//Skapa sanningsvärde för om spelaren springer in i en powerup
+		//Skapa sanningsvï¿½rde fï¿½r om spelaren springer in i en powerup
 		return false;
 	}
 	private boolean hitPowerbottleDown(Player player, Powerbottle powerbottle){
-		//Skapa sannisgsvärde för om spelaren landar på en powerup
+		//Skapa sannisgsvï¿½rde fï¿½r om spelaren landar pï¿½ en powerup
 		return false;
 	}
 	
@@ -67,15 +67,15 @@ public class GameHandler {
 	 *******************************/
 	
 	private void performObstacleHit(){
-		//Skriv vad som händer om man träffar ett hinder
+		//Skriv vad som hï¿½nder om man trï¿½ffar ett hinder
 	}
 	
 	private void performObstacleLand(){
-		//Skriv vad som händer när spelaren landar på ett hinder
+		//Skriv vad som hï¿½nder nï¿½r spelaren landar pï¿½ ett hinder
 	}
 	
 	private void performPowerbottleHit(){
-		//Skriv vad som händer om man träffar en powerbottle
+		//Skriv vad som hï¿½nder om man trï¿½ffar en powerbottle
 	}
 
 }

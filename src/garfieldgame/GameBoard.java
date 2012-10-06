@@ -1,4 +1,4 @@
-package garfield;
+package garfieldgame;
 
 import java.io.ObjectInputStream.GetField;
 import java.util.ArrayList;
@@ -34,10 +34,9 @@ public class GameBoard {
 		boardListeners.add(bl);
 		
 	}
-	
-	public void notifyListeners(){
+
+	private void notifyListeners(){
 		if(boardListeners!=null){
-                    System.out.println("ok");
 			for (BoardListener listener : boardListeners) {
 				listener.boardChanged();
 			}

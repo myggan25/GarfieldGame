@@ -1,4 +1,4 @@
-package garfield;
+package garfieldgame;
 
 import java.awt.event.ActionEvent;
 
@@ -20,12 +20,12 @@ public class Game {
                     //board.getMap().moveMapLeft();
                     board.tick();
                     frame.updateFrame(board);
-                    System.out.println(board.getMap().getObstacle().getXCoordMap());
+                    //System.out.println(board.getMap().getObstacle().getXCoordMap());
                     //tFrame.updateFrame(board);
                 }
             };
             //frame.setVisible(true);
-            final Timer clockTimer = new Timer(200, doOneStep);
+            final Timer clockTimer = new Timer(10, doOneStep);
             clockTimer.setCoalesce(true);
             clockTimer.start();	
 	}

@@ -1,4 +1,4 @@
-package garfield;
+package garfieldgame;
 
 public class Obstacle implements BoardObject {
 	private int height, width, xCoord, yCoord, xCoordMap;
@@ -15,15 +15,15 @@ public class Obstacle implements BoardObject {
 	}
 	
 	public void moveLeft(){
-		//Flytta hindret åt vänster
+		//Flytta hindret ï¿½t vï¿½nster
 	}
 	
 	/*
-	 * Skapa eventuellt hinder som rör på sig i fler riktiningar
+	 * Skapa eventuellt hinder som rï¿½r pï¿½ sig i fler riktiningar
 	 */
 	
 	/*
-	 * Skapa eventuellt olika färger
+	 * Skapa eventuellt olika fï¿½rger
 	 */
 	
 

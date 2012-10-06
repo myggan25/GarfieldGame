@@ -1,4 +1,4 @@
-package garfield;
+package garfieldgame;
 
 public interface BoardObject {
 	

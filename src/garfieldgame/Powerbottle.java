@@ -1,9 +1,9 @@
-package garfield;
+package garfieldgame;
 
 public class Powerbottle implements BoardObject {
 	private int height, width, xCoord, yCoord, xCoordMap;
 	private boolean inBoard;
-	//skapa olika effekter för olika powerbottles 
+	//skapa olika effekter fï¿½r olika powerbottles 
 	
 	public Powerbottle(int height, int width, int xCoordMap, int yCoord){
 		this.height=height;
@@ -15,12 +15,12 @@ public class Powerbottle implements BoardObject {
 	}
 	
 	public void moveLeft(){
-		//Flytta flaskan åt vänster
+		//Flytta flaskan ï¿½t vï¿½nster
 	}
 	
 	
 	/*
-	 * Skapa eventuellt flaskor som rör på sig i fler riktiningar
+	 * Skapa eventuellt flaskor som rï¿½r pï¿½ sig i fler riktiningar
 	 */
 	
 	/*

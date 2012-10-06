@@ -1,4 +1,4 @@
-package garfield;
+package garfieldgame;
 
 import java.awt.*;
 import java.awt.geom.Area;
@@ -15,7 +15,7 @@ public class GraphicalViewer extends JComponent implements BoardListener {
 	}
 	
 	public void boardChanged(){
-            System.out.println("ska repainta");
+            //System.out.println("ska repainta");
 		repaint();
 	}
 	
@@ -27,8 +27,8 @@ public class GraphicalViewer extends JComponent implements BoardListener {
 		this.gameBoard = gameBoard;
 	}
 	
-	public void paintComponent(Graphics g){
-            System.out.println("ritar ut");
+	public void paintComponent(final Graphics g){
+            //System.out.println("ritar ut");
             Graphics2D g2 = (Graphics2D)g;
             //Rita ut spelplanen
             paintBackground(g2);

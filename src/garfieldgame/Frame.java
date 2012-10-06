@@ -1,4 +1,4 @@
-package garfield;
+package garfieldgame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,7 +40,7 @@ public class Frame extends JFrame {
             super("Garfield's journey");
             gameArea = new GraphicalViewer(board);
             
-            board.addBoardListener(gameArea);
+            
 		
             createMenu();
             //createKeyBoardListeners();
@@ -65,17 +65,19 @@ public class Frame extends JFrame {
                     "left");
             gameArea.getActionMap().put("left",
                     balanceLeft);
-        
-		this.add(gameArea);
-		this.setSize(gameArea.getPreferredSize());
-		this.pack();
-		this.setVisible(true);
-	  	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+            board.addBoardListener(gameArea);
+            this.add(gameArea);
+            this.setSize(gameArea.getPreferredSize());
+            this.pack();
+            this.setVisible(true);
+            this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
 	public void updateFrame(GameBoard board){
 		//S�tt in en ny board och g�r den visible
 		gameArea.insertNewGameBoard(board);
+                //den nedan gör att det fungerar men ska inte gå genom denna egentligen
+                //gameArea.boardChanged();
 		this.setVisible(true);
 	}
 	

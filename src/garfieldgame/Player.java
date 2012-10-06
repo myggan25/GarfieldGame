@@ -1,8 +1,8 @@
-package garfield;
+package garfieldgame;
 
 public class Player implements BoardObject {
 	private int height, width, xCoord, yCoord;
-	//int balansmätare, skapa en balansmätare
+	//int balansmï¿½tare, skapa en balansmï¿½tare
 	
 	public Player(int height, int width, int xCoord, int yCoord){
 		this.height=height;
@@ -12,10 +12,10 @@ public class Player implements BoardObject {
 	}
 	
 	public void jump(){
-		//ändra hur objectet hoppar
+		//ï¿½ndra hur objectet hoppar
 	}
 	
-	//Ev en funktion för att få objectet att röra sig nedåt igen
+	//Ev en funktion fï¿½r att fï¿½ objectet att rï¿½ra sig nedï¿½t igen
 	public void land(){
 		
 	}
@@ -25,11 +25,11 @@ public class Player implements BoardObject {
 	}
 	
 	public void balanceLeft(){
-		//balanskorrigera åt vänster, dvs få objectet att luta åt vänster
+		//balanskorrigera ï¿½t vï¿½nster, dvs fï¿½ objectet att luta ï¿½t vï¿½nster
 	}
 	
 	public void balanceRight(){
-		//balanskorrigera åt höger, dvs få objectet att luta åt höger
+		//balanskorrigera ï¿½t hï¿½ger, dvs fï¿½ objectet att luta ï¿½t hï¿½ger
 	}
 
 	/**********

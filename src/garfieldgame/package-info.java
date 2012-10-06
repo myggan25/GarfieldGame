@@ -5,4 +5,4 @@
  * @author robin
  *
  */
-package garfield;
+package garfieldgame;
