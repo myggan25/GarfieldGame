@@ -1,5 +1,7 @@
 package garfieldgame;
 
+import java.util.ArrayList;
+
 public class Map {
 	private final int lowDefaultXCoordObstacle=600, highDefaultXCoordObstacle=300;
 	private final int mapLength;
@@ -7,6 +9,8 @@ public class Map {
 	private Obstacle obstacle;
 	private Powerbottle alcohol;
 	private int leftBorder, rightBorder;
+        private ArrayList<Obstacle> obstacles;
+        private ArrayList<Powerbottle> powerbottles;
 	
 	
 	public Map(int length, int height,int visibleWidth){
@@ -14,30 +18,44 @@ public class Map {
 		this.mapLength=length;
 		leftBorder=0;
 		rightBorder=visibleWidth;
-		
+                obstacles = new ArrayList<Obstacle>();
+		powerbottles = new ArrayList<Powerbottle>();
 		
 		/****************************
 		 * Dessa saker �r i testsyfte
 		 ****************************/
-		obstacle = new Obstacle(100, 100, 500, lowDefaultXCoordObstacle);
-		alcohol = new Powerbottle(20, 10, 500, 500);
+                createMap1();
+                
+                
+		//obstacle = new Obstacle(100, 100, 500, lowDefaultXCoordObstacle);
+		//alcohol = new Powerbottle(20, 10, 500, 500);
 	}
 	
 	public void moveMapLeft(){
-		leftBorder--;
-		rightBorder--;
-		obstacle.setXCoordMap(obstacle.getXCoordMap()-1);
-		alcohol.setXCoordMap(alcohol.getXCoordMap()-1);
+		leftBorder+=4;
+		rightBorder+=4;
+                for(Obstacle obstacle : obstacles){
+                    //obstacle.setXCoord(obstacle.getXCoord()-4);
+                    obstacle.moveLeft();
+                }
+                for(Powerbottle bottle : powerbottles){
+                    bottle.moveLeft();
+                    //bottle.setXCoord(alcohol.getXCoord()-4);
+                }
 	}
 	
-	public void createMap(){
+	public void createMap1(){
 		//Skapa banan
+                powerbottles.add(new Powerbottle(20, 10, 500, 500));
+                obstacles.add(new Obstacle(100, 100, 500, lowDefaultXCoordObstacle));
+                obstacles.add(new Obstacle(100, 100, 1000, highDefaultXCoordObstacle));
+                obstacles.add(new Obstacle(100, 100, 1500, lowDefaultXCoordObstacle));
 	}
 	
-	public boolean checkIfObstacleOnScreen(){
+	/*public boolean checkIfObstacleOnScreen(){
 		//Kolla om det finns n�got hinder p� sk�rmen just d�
 		return false;
-	}
+	}*/
 	
 	public boolean checkIfPowerbottleOnScreen(){
 		//Kolla om det finns n�gon powerup p� sk�mrne just d�
@@ -57,8 +75,34 @@ public class Map {
 		return obstacle;
 	}
 	
-	public Obstacle getObstacleInBoard(){
+	/*public ArrayList<Obstacle> getObstaclesInBoard(){
 		//H�mta obstacle om den �r i gameBoard
+            ArrayList<Obstacle> returnObjects = new ArrayList<Obstacle>();
+            if(obstacles!=null){
+                    for (Obstacle obstacle : obstacles) {
+                            if(obstacle.getXCoordMap()<rightBorder){
+                                returnObjects.add(obstacle);
+                                obstacles.remove(obstacle);
+                            }
+                    }
+            }
+            return returnObjects;
+	}*/
+        public Obstacle ifInBoardGetObstacle(){
+            Obstacle tempObs;
+            if(obstacles!=null){
+                    for (Obstacle obstacle : obstacles) {
+                            if(obstacle.getXCoord()<rightBorder){
+                                tempObs = obstacle;
+                                obstacles.remove(obstacle);
+                                return tempObs;
+                            }
+                    }
+            }
+            return null;
+        }
+        public Obstacle getObstacleInBoard(){
+		//H�mta powerbottle om den �r i gameBoard
 		return obstacle;
 	}
 	
@@ -71,19 +115,32 @@ public class Map {
 		//H�mta powerbottle om den �r i gameBoard
 		return alcohol;
 	}
+        public Powerbottle ifInBoardGetPowerbottle(){
+            Powerbottle tempBottle;
+            if(powerbottles!=null){
+                    for (Powerbottle bottle : powerbottles) {
+                            if(bottle.getXCoord()<rightBorder){
+                                tempBottle = bottle;
+                                powerbottles.remove(bottle);
+                                return tempBottle;
+                            }
+                    }
+            }
+            return null;
+        }
 	
 	/*---------
 	 * SETTERS
 	 ---------*/
 
 
-	public void setObstacleInGameBoard(){
+	/*public void setObstacleInGameBoard(){
 		obstacle.setInBoard();
 	}
 	
 	public void setPowerbottleInGameBoard(){
 		alcohol.setInBoard();
-	}
+	}*/
 	
 	public void addObstacle(Obstacle obs){
 		//ska egentligen l�gga in i en array

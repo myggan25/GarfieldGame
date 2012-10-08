@@ -1,20 +1,21 @@
 package garfieldgame;
 
 public class Powerbottle implements BoardObject {
-	private int height, width, xCoord, yCoord, xCoordMap;
+	private int height, width, xCoord, yCoord;//, xCoordMap;
 	private boolean inBoard;
 	//skapa olika effekter f�r olika powerbottles 
 	
-	public Powerbottle(int height, int width, int xCoordMap, int yCoord){
+	public Powerbottle(int height, int width, int xCoord, int yCoord){
 		this.height=height;
 		this.width=width;
-		this.xCoordMap=xCoordMap;
+		this.xCoord=xCoord;
 		//this.xCoord=xCoordMap;
 		this.yCoord=yCoord;
 		this.inBoard=false;
 	}
 	
 	public void moveLeft(){
+            xCoord-=4;
 		//Flytta flaskan �t v�nster
 	}
 	
@@ -46,9 +47,9 @@ public class Powerbottle implements BoardObject {
 		return yCoord;
 	}
 	
-	public int getXCoordMap(){
+	/*public int getXCoordMap(){
 		return xCoordMap;
-	}
+	}*/
 	
 	/**********
 	 * SETTERS
@@ -69,11 +70,11 @@ public class Powerbottle implements BoardObject {
 		this.yCoord=yCoord;
 	}
 	
-	public void setXCoordMap(int xCoordMap){
+	/*public void setXCoordMap(int xCoordMap){
 		this.xCoordMap=xCoordMap;
 	}
 	public void setInBoard(){
 		this.inBoard=true;
-	}
+	}*/
 	
 }

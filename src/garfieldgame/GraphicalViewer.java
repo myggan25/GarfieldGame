@@ -6,6 +6,8 @@ import java.awt.geom.Rectangle2D;
 
 import javax.swing.*;
 
+import java.util.ArrayList;
+
 public class GraphicalViewer extends JComponent implements BoardListener {
 	
 	GameBoard gameBoard;
@@ -59,21 +61,26 @@ public class GraphicalViewer extends JComponent implements BoardListener {
 	}
 	
 	private void paintObstacle(Graphics2D g2){
-		//Rita ut hinder
-		final Area obstacleArea = new Area(new Rectangle2D.Float(
-				gameBoard.getCurrentObstacle().getXCoordMap(),gameBoard.getCurrentObstacle().getYCoord(),
-				gameBoard.getCurrentObstacle().getWidth(),gameBoard.getCurrentObstacle().getHeight()));
-		g2.setPaint(new Color(100,100,100));
-		g2.fill(obstacleArea);
+            //Rita ut hinder
+            for(Obstacle obstacle : gameBoard.getObstacles()){
+                final Area obstacleArea = new Area(new Rectangle2D.Float(
+                            obstacle.getXCoord(),obstacle.getYCoord(),obstacle.getWidth(),obstacle.getHeight()));
+                //System.out.println(obstacle.getXCoord());
+                g2.setPaint(new Color(100,100,100));
+                g2.fill(obstacleArea);
+            }
 		
 	}
 	
 	private void paintPowerbottle(Graphics2D g2){
 		//Rita ut energiflaska
+            for(Powerbottle bottle : gameBoard.getPowerBottles()){
 		final Area powerbottleArea = new Area(new Rectangle2D.Float(
-				gameBoard.getCurrentPowerbottle().getXCoordMap(),gameBoard.getCurrentPowerbottle().getYCoord(),gameBoard.getCurrentPowerbottle().getWidth(),gameBoard.getCurrentPowerbottle().getHeight()));
+                        bottle.getXCoord(),bottle.getYCoord(),bottle.getWidth(),bottle.getHeight()));
+				//gameBoard.getCurrentPowerbottle().getXCoordMap(),gameBoard.getCurrentPowerbottle().getYCoord(),gameBoard.getCurrentPowerbottle().getWidth(),gameBoard.getCurrentPowerbottle().getHeight()));
 		g2.setPaint(new Color(210,105,30));
 		g2.fill(powerbottleArea);
+            }
 	}
 	
 }

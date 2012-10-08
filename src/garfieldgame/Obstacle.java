@@ -1,21 +1,23 @@
 package garfieldgame;
 
 public class Obstacle implements BoardObject {
-	private int height, width, xCoord, yCoord, xCoordMap;
+	private int height, width, xCoord, yCoord;//xCoordMap;
 	private boolean inBoard;
 	
 	
-	public Obstacle(int height, int width, int xCoordMap, int yCoord){
+	public Obstacle(int height, int width, int xCoord, int yCoord){
 		this.height=height;
 		this.width=width;
-		//this.xCoord=xCoord;
+		this.xCoord=xCoord;
 		this.yCoord=yCoord;
-		this.xCoordMap=xCoordMap;
+		//this.xCoordMap=xCoordMap;
 		this.inBoard = false;
 	}
 	
 	public void moveLeft(){
 		//Flytta hindret �t v�nster
+            xCoord-=4;
+            
 	}
 	
 	/*
@@ -46,9 +48,9 @@ public class Obstacle implements BoardObject {
 		return yCoord;
 	}
 	
-	public int getXCoordMap(){
+	/*public int getXCoordMap(){
 		return xCoordMap;
-	}
+	}*/
 	
 	/**********
 	 * SETTERS
@@ -69,13 +71,13 @@ public class Obstacle implements BoardObject {
 		this.yCoord=yCoord;
 	}
 	
-	public void setXCoordMap(int xCoordMap){
+	/*public void setXCoordMap(int xCoordMap){
 		this.xCoordMap=xCoordMap;
 	}
 	
 	public void setInBoard(){
 		this.inBoard=true;
-	}
+	}*/
 	
 
 	
