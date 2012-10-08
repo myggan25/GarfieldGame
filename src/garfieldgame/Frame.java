@@ -14,13 +14,13 @@ public class Frame extends JFrame {
 		public void actionPerformed(ActionEvent e){
 			//Utf�r hopp
                     //board.getMap().getObstacle().setHeight(board.getMap().getObstacle().getHeight()+1);
-			System.out.println("hopp");
+			board.setJump(true);
 		}
 	};
 	final Action crouch = new AbstractAction()  {
 		public void actionPerformed(ActionEvent e){
 			//Utf�r ducka
-			System.out.println("duck");
+			board.setCrouch(true);
 		}
 	};
 	final Action balanceRight = new AbstractAction()  {
@@ -38,6 +38,7 @@ public class Frame extends JFrame {
 	
 	public Frame(GameBoard board){
             super("Garfield's journey");
+            this.board = board;
             gameArea = new GraphicalViewer(board);
             
             
@@ -75,6 +76,7 @@ public class Frame extends JFrame {
 	
 	public void updateFrame(GameBoard board){
 		//S�tt in en ny board och g�r den visible
+		this.board = board;
 		gameArea.insertNewGameBoard(board);
                 //den nedan gör att det fungerar men ska inte gå genom denna egentligen
                 //gameArea.boardChanged();

@@ -1,5 +1,4 @@
 package garfieldgame;
-
 import java.io.ObjectInputStream.GetField;
 import java.util.ArrayList;
 
@@ -8,14 +7,23 @@ public class GameBoard {
 	private Player garfield;
 	private ArrayList<BoardListener> boardListeners;
 	private Map map;
-        private ArrayList<Obstacle> obstacles;
-        private ArrayList<Powerbottle> powerbottles;
+	private ArrayList<Obstacle> obstacles;
+	private ArrayList<Powerbottle> powerbottles;
+	private int jumpCounter=0;
+	private int fallCounter=0;
+	private boolean jumping = false;
+	private boolean falling = false;
+	private boolean crouching = false;
+	private boolean standing = true;
+	private boolean unCrouch = false;
 	
 	public GameBoard(int width, int height){
             boardListeners = new ArrayList<BoardListener>();
             this.width=width;
             this.height=height;
             this.map = new Map(width*50, height, width);
+            Player player = new Player(50, 50, width/2, 650); 
+            addPlayer(player);
             obstacles = new ArrayList<Obstacle>();
             powerbottles = new ArrayList<Powerbottle>();
 		
@@ -30,9 +38,28 @@ public class GameBoard {
 	public void tick(){
 		//anropa GameHandlers tick f�r att �ndra spelet, dvs flytta spelplanen framm�t
 		map.moveMapLeft();
-                moveObjectsOnBoard();
-                moveObstacleFromMapToBoard();
-                moveBottleFromMapToBoard();
+		moveObjectsOnBoard();
+		moveObstacleFromMapToBoard();
+		moveBottleFromMapToBoard();
+		if (jumping){
+			jumpCounter = garfield.jump(jumpCounter);
+			if(jumpCounter==0){
+				jumping = false;
+				falling = true;
+			}
+		}
+		else if (falling){
+			fallCounter = garfield.land(fallCounter);
+			if (fallCounter ==0){
+				falling=false;
+			}
+		}
+		else if (crouching){
+			standing = garfield.crouch(standing);
+		}
+		else if (unCrouch){
+			standing = garfield.unCrouch(standing);
+		}
 		notifyListeners();
 	}
         
@@ -87,6 +114,18 @@ public class GameBoard {
 	
 	private void addPlayer(Player player){
 		garfield = player;
+	}
+	
+	public void setJump(boolean jump){
+		jumping = jump;
+	}
+	
+	public void setCrouch(boolean crouch){
+		crouching = crouch;
+	}
+	
+	public void setUnCrouch(boolean unCrouched){
+		unCrouch = unCrouched;
 	}
 	
 	/*---------
