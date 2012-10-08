@@ -37,10 +37,7 @@ public class GameBoard {
 	
 	public void tick(){
 		//anropa GameHandlers tick f�r att �ndra spelet, dvs flytta spelplanen framm�t
-		map.moveMapLeft();
-		moveObjectsOnBoard();
-		moveObstacleFromMapToBoard();
-		moveBottleFromMapToBoard();
+		GameHandler.tick(this);
 		if (jumping){
 			jumpCounter = garfield.jump(jumpCounter);
 			if(jumpCounter==0){
@@ -62,6 +59,14 @@ public class GameBoard {
 		}
 		notifyListeners();
 	}
+        public void moveWholeBoard(){
+                map.moveMapLeft();
+                moveObjectsOnBoard();
+		moveObstacleFromMapToBoard();
+		moveBottleFromMapToBoard();
+                removeObstacleFromBoard();
+                removeBottleFromBoard();
+        }
         
         private void moveObjectsOnBoard(){
             for(Obstacle obstacle : obstacles){
@@ -93,11 +98,21 @@ public class GameBoard {
                 obstacles.add(tempObs);
             }
         }
+        private void removeObstacleFromBoard(){
+            if(!obstacles.isEmpty() && obstacles.get(0).getXCoord()<0){
+                obstacles.remove(0);
+            }
+        }
         private void moveBottleFromMapToBoard(){
             Powerbottle tempBottle;
             tempBottle = map.ifInBoardGetPowerbottle();
             if(tempBottle!=null){
                 powerbottles.add(tempBottle);
+            }
+        }
+        private void removeBottleFromBoard(){
+            if(!powerbottles.isEmpty() && powerbottles.get(0).getXCoord()<0){
+                powerbottles.remove(0);
             }
         }
         

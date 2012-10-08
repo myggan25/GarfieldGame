@@ -34,7 +34,7 @@ public class GraphicalViewer extends JComponent implements BoardListener {
             Graphics2D g2 = (Graphics2D)g;
             //Rita ut spelplanen
             paintBackground(g2);
-            //paintPlayer(g2);
+            paintPlayer(g2);
             paintObstacle(g2);
             paintPowerbottle(g2);
         

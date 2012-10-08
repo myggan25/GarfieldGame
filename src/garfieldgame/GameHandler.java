@@ -2,17 +2,26 @@ package garfieldgame;
 
 public class GameHandler {
 
-	public boolean checkIfFalling(){
+    
+    public static void tick(GameBoard board){
+        board.moveWholeBoard();
+        checkIfHitOnBoard(board.getPlayer(), board.getObstacles().get(0), board.getPowerBottles().get(0));
+    }
+	public static boolean checkIfFalling(){
 		//Kolla om spelaren har n�got "fast" under sig
 		return false;
 	}
+
 	
 	public void fall(){
 		//G�r s� att spelaren faller
 	}
 	
-	public void checkIfHitOnBoard(Player player, Obstacle obstacle, Powerbottle powerbottle){
+	public static void checkIfHitOnBoard(Player player, Obstacle obstacle, Powerbottle powerbottle){
 		//G�r kontinuerligt kollar f�r att kolla om det uppst�r en kollision
+            if(hitObstacleDown(player, obstacle)){
+                System.out.println("träff");
+            }
 	}
 	
 	/*****************************************
@@ -27,15 +36,26 @@ public class GameHandler {
 	
 	private boolean hitObstacleUp(Player player, Obstacle obstacle){
 		//Skapa sanningsv�rde f�r om spelaren hoppar in i ett object
+            
 		return false;
 	}
 	private boolean hitObstacleRight(Player player, Obstacle obstacle){
 		//Skapa sanningsv�rde f�r om spelaren springer in i ett object
 		return false;
 	}
-	private boolean hitObstacleDown(Player player, Obstacle obstacle){
+	private static boolean hitObstacleDown(Player player, Obstacle obstacle){
 		//Skapa sannisgsv�rde f�r om spelaren landar p� ett object
-		return false;
+            int playerLeft,playerRight,playerBottom,obstacleTop,obstacleLeft,obstacleRight;
+            playerLeft=player.getXCoord()-player.getWidth()/2;
+            playerRight=player.getXCoord()+player.getWidth()/2;
+            playerBottom=player.getYCoord()-player.getHeight()/2;
+            obstacleLeft=obstacle.getXCoord()-obstacle.getWidth()/2;
+            obstacleRight=obstacle.getXCoord()-obstacle.getWidth()/2;
+            obstacleTop=obstacle.getYCoord()+obstacle.getHeight()/2;
+            if(obstacleLeft<playerRight && obstacleRight>playerLeft){
+                return true;
+            }
+	return false;
 	}
 		
 

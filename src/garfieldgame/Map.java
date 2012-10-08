@@ -32,7 +32,7 @@ public class Map {
 	}
 	
 	public void moveMapLeft(){
-		leftBorder+=4;
+		//leftBorder+=4;
 		rightBorder+=4;
                 for(Obstacle obstacle : obstacles){
                     //obstacle.setXCoord(obstacle.getXCoord()-4);
@@ -45,11 +45,20 @@ public class Map {
 	}
 	
 	public void createMap1(){
-		//Skapa banan
-                powerbottles.add(new Powerbottle(20, 10, 500, 500));
-                obstacles.add(new Obstacle(100, 100, 500, lowDefaultXCoordObstacle));
-                obstacles.add(new Obstacle(100, 100, 1000, highDefaultXCoordObstacle));
-                obstacles.add(new Obstacle(100, 100, 1500, lowDefaultXCoordObstacle));
+		//Skapa bana 1
+            powerbottles.add(new Powerbottle(20, 10, 200, 500));
+            powerbottles.add(new Powerbottle(20, 10, 500, 500));
+            powerbottles.add(new Powerbottle(20, 10, 700, 500));
+            powerbottles.add(new Powerbottle(20, 10, 1200, 500));
+            powerbottles.add(new Powerbottle(20, 10, 1400, 500));
+                
+            obstacles.add(new Obstacle(100, 100, 400, highDefaultXCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 700, lowDefaultXCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 1000, highDefaultXCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 1300, lowDefaultXCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 1600, lowDefaultXCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 2000, highDefaultXCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 2100, lowDefaultXCoordObstacle));
 	}
 	
 	/*public boolean checkIfObstacleOnScreen(){
@@ -74,6 +83,9 @@ public class Map {
 		//H�mta obstacle fr�n Obstacle
 		return obstacle;
 	}
+        public int getLeftBorder(){
+            return leftBorder;
+        }
 	
 	/*public ArrayList<Obstacle> getObstaclesInBoard(){
 		//H�mta obstacle om den �r i gameBoard
