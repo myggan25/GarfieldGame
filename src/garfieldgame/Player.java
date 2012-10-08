@@ -15,13 +15,13 @@ public class Player implements BoardObject {
 	public int jump(int jumpCounter){
 		//ï¿½ndra hur objectet hoppar
 		if(jumpCounter < 100){
-			this.yCoord = this.yCoord - 1;
-			jumpCounter++;
+			this.yCoord = this.yCoord - 4;
+			jumpCounter+=2;
 			//Fixa en mjukare funktion om det finns tid
 		}
 		else{
 			jumpCounter=0;
-			//Slå igång "landa" funktionen
+			//Slï¿½ igï¿½ng "landa" funktionen
 		}
 		return jumpCounter;
 	}
@@ -30,13 +30,13 @@ public class Player implements BoardObject {
 	//Ev en funktion fï¿½r att fï¿½ objectet att rï¿½ra sig nedï¿½t igen
 	public int land(int fallCounter){
 		if(fallCounter < 100){
-			this.yCoord = this.yCoord + 1;
-			fallCounter++;
+			this.yCoord += 4;
+			fallCounter+=2;
 			//Fixa en mjukare funktion om det finns tid
 		}
 		else{
 			fallCounter=0;
-			//Slå igång "landa" funktionen
+			//Slï¿½ igï¿½ng "landa" funktionen
 		}
 		return fallCounter;
 		

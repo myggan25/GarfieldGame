@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class GameBoard {
 	private final int width, height;
-	private Player garfield;
+	private Player player;
 	private ArrayList<BoardListener> boardListeners;
 	private Map map;
 	private ArrayList<Obstacle> obstacles;
@@ -22,8 +22,8 @@ public class GameBoard {
             this.width=width;
             this.height=height;
             this.map = new Map(width*50, height, width);
-            Player player = new Player(50, 50, width/2, 650); 
-            addPlayer(player);
+            player  = new Player(50, 50, 50, 650); 
+            //addPlayer(player);
             obstacles = new ArrayList<Obstacle>();
             powerbottles = new ArrayList<Powerbottle>();
 		
@@ -39,23 +39,23 @@ public class GameBoard {
 		//anropa GameHandlers tick f�r att �ndra spelet, dvs flytta spelplanen framm�t
 		GameHandler.tick(this);
 		if (jumping){
-			jumpCounter = garfield.jump(jumpCounter);
+			jumpCounter = player.jump(jumpCounter);
 			if(jumpCounter==0){
 				jumping = false;
 				falling = true;
 			}
 		}
 		else if (falling){
-			fallCounter = garfield.land(fallCounter);
+			fallCounter = player.land(fallCounter);
 			if (fallCounter ==0){
 				falling=false;
 			}
 		}
 		else if (crouching){
-			standing = garfield.crouch(standing);
+			standing = player.crouch(standing);
 		}
 		else if (unCrouch){
-			standing = garfield.unCrouch(standing);
+			standing = player.unCrouch(standing);
 		}
 		notifyListeners();
 	}
@@ -99,7 +99,7 @@ public class GameBoard {
             }
         }
         private void removeObstacleFromBoard(){
-            if(!obstacles.isEmpty() && obstacles.get(0).getXCoord()<0){
+            if(!obstacles.isEmpty() && (obstacles.get(0).getXCoord()+obstacles.get(0).getWidth())<0){
                 obstacles.remove(0);
             }
         }
@@ -111,7 +111,7 @@ public class GameBoard {
             }
         }
         private void removeBottleFromBoard(){
-            if(!powerbottles.isEmpty() && powerbottles.get(0).getXCoord()<0){
+            if(!powerbottles.isEmpty() && (powerbottles.get(0).getXCoord()+powerbottles.get(0).getWidth())<0){
                 powerbottles.remove(0);
             }
         }
@@ -128,7 +128,7 @@ public class GameBoard {
 	 ---------*/
 	
 	private void addPlayer(Player player){
-		garfield = player;
+		this.player = player;
 	}
 	
 	public void setJump(boolean jump){
@@ -160,7 +160,7 @@ public class GameBoard {
 	
 	public Player getPlayer(){
 		//H�mta player fr�n Player
-		return garfield;
+		return player;
 	}
 	/*public Obstacle getCurrentObstacle(){
 		//ska nog �ndras till en funktion som returnerar en lista med alla nuvarande hinder p� banan

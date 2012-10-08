@@ -5,7 +5,13 @@ public class GameHandler {
     
     public static void tick(GameBoard board){
         board.moveWholeBoard();
-        checkIfHitOnBoard(board.getPlayer(), board.getObstacles().get(0), board.getPowerBottles().get(0));
+        if(!board.getObstacles().isEmpty()){
+            //System.out.println("ej tom");
+            if(hitObstacleRight(board.getPlayer(), board.getObstacles().get(0))){
+                System.out.println("träff");
+            }
+        }
+        //checkIfHitOnBoard(board.getPlayer(), board.getObstacles().get(0), board.getPowerBottles().get(0));
     }
 	public static boolean checkIfFalling(){
 		//Kolla om spelaren har n�got "fast" under sig
@@ -19,42 +25,51 @@ public class GameHandler {
 	
 	public static void checkIfHitOnBoard(Player player, Obstacle obstacle, Powerbottle powerbottle){
 		//G�r kontinuerligt kollar f�r att kolla om det uppst�r en kollision
-            if(hitObstacleDown(player, obstacle)){
+            /*if(hitObstacleDown(player, obstacle)){
                 System.out.println("träff");
-            }
+            }*/
 	}
 	
 	/*****************************************
 	 *SANNINGSV�RDEN F�R KOLLISION MED HINDER*
 	 *****************************************/
 	
-	private boolean hitObstacle(Player player, Obstacle obstacle){
+	private static boolean hitObstacle(Player player, Obstacle obstacle){
 		//K�r kollisionskoll f�r alla v�rden
 		//Anv�nder sig av nedanst�ende metoder
 		return false;
 	}
 	
-	private boolean hitObstacleUp(Player player, Obstacle obstacle){
+	private static boolean hitObstacleUp(Player player, Obstacle obstacle){
 		//Skapa sanningsv�rde f�r om spelaren hoppar in i ett object
             
 		return false;
 	}
-	private boolean hitObstacleRight(Player player, Obstacle obstacle){
+	private static boolean hitObstacleRight(Player player, Obstacle obstacle){
 		//Skapa sanningsv�rde f�r om spelaren springer in i ett object
-		return false;
-	}
-	private static boolean hitObstacleDown(Player player, Obstacle obstacle){
-		//Skapa sannisgsv�rde f�r om spelaren landar p� ett object
-            int playerLeft,playerRight,playerBottom,obstacleTop,obstacleLeft,obstacleRight;
+            //System.out.println(obstacle.getWidth());   
+            int playerLeft,playerRight,playerBottom,playerTop,obstacleTop,obstacleLeft,obstacleRight,obstacleBottom;
             playerLeft=player.getXCoord()-player.getWidth()/2;
             playerRight=player.getXCoord()+player.getWidth()/2;
             playerBottom=player.getYCoord()-player.getHeight()/2;
+            playerTop=player.getYCoord()+player.getHeight()/2;
             obstacleLeft=obstacle.getXCoord()-obstacle.getWidth()/2;
-            obstacleRight=obstacle.getXCoord()-obstacle.getWidth()/2;
+            obstacleRight=obstacle.getXCoord()+obstacle.getWidth()/2;
             obstacleTop=obstacle.getYCoord()+obstacle.getHeight()/2;
-            if(obstacleLeft<playerRight && obstacleRight>playerLeft){
+            obstacleBottom=obstacle.getYCoord()-obstacle.getHeight()/2;
+            System.out.println(obstacle.getXCoord()-obstacle.getWidth()/2);
+            //System.out.println(playerRight +">" + obstacleLeft);
+            //System.out.println(playerTop +"<" + obstacleBottom);
+            //System.out.println(playerBottom +"<" + obstacleTop);
+            if(playerRight>=obstacleLeft && playerTop<=obstacleBottom && playerBottom<=obstacleTop){
                 return true;
             }
+            return false;
+	}
+	private static boolean hitObstacleDown(Player player, Obstacle obstacle){
+		//Skapa sannisgsv�rde f�r om spelaren landar p� ett object
+
+               
 	return false;
 	}
 		
