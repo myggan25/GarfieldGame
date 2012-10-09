@@ -3,7 +3,7 @@ package garfieldgame;
 import java.util.ArrayList;
 
 public class Map {
-	private final int lowDefaultXCoordObstacle=600, highDefaultXCoordObstacle=300;
+	private final int lowDefaultXCoordObstacle=600, highDefaultXCoordObstacle=400;
 	private final int mapLength;
 	private final int mapHeight;
 	private Obstacle obstacle;
@@ -46,16 +46,16 @@ public class Map {
 	
 	public void createMap1(){
 		//Skapa bana 1
-            powerbottles.add(new Powerbottle(20, 10, 200, 500));
+            /*powerbottles.add(new Powerbottle(20, 10, 200, 500));
             powerbottles.add(new Powerbottle(20, 10, 500, 500));
             powerbottles.add(new Powerbottle(20, 10, 700, 500));
             powerbottles.add(new Powerbottle(20, 10, 1200, 500));
-            powerbottles.add(new Powerbottle(20, 10, 1400, 500));
+            powerbottles.add(new Powerbottle(20, 10, 1400, 500));*/
                 
             obstacles.add(new Obstacle(100, 100, 400, highDefaultXCoordObstacle));
             obstacles.add(new Obstacle(100, 500, 700, lowDefaultXCoordObstacle));
-            //obstacles.add(new Obstacle(100, 100, 1000, highDefaultXCoordObstacle));
-            //obstacles.add(new Obstacle(100, 100, 1300, lowDefaultXCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 1000, highDefaultXCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 1300, lowDefaultXCoordObstacle));
             obstacles.add(new Obstacle(100, 100, 1600, lowDefaultXCoordObstacle));
             obstacles.add(new Obstacle(100, 100, 2000, highDefaultXCoordObstacle));
             obstacles.add(new Obstacle(100, 100, 2100, lowDefaultXCoordObstacle));

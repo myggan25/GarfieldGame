@@ -49,28 +49,42 @@ public class GameHandler {
 		//Skapa sanningsv�rde f�r om spelaren springer in i ett object
             //System.out.println(obstacle.getWidth());   
             int playerLeft,playerRight,playerBottom,playerTop,obstacleTop,obstacleLeft,obstacleRight,obstacleBottom;
-            playerLeft=player.getXCoord()-player.getWidth()/2;
-            playerRight=player.getXCoord()+player.getWidth()/2;
-            playerBottom=player.getYCoord()-player.getHeight()/2;
-            playerTop=player.getYCoord()+player.getHeight()/2;
-            obstacleLeft=obstacle.getXCoord()-obstacle.getWidth()/2;
-            obstacleRight=obstacle.getXCoord()+obstacle.getWidth()/2;
-            obstacleTop=obstacle.getYCoord()+obstacle.getHeight()/2;
-            obstacleBottom=obstacle.getYCoord()-obstacle.getHeight()/2;
-            System.out.println(obstacle.getXCoord()-obstacle.getWidth()/2);
+            playerLeft=player.getXCoord();
+            playerRight=player.getXCoord()+player.getWidth();
+            playerBottom=player.getYCoord()+player.getHeight();
+            playerTop=player.getYCoord();
+            obstacleLeft=obstacle.getXCoord();
+            obstacleRight=obstacle.getXCoord()+obstacle.getWidth();
+            obstacleTop=obstacle.getYCoord();
+            obstacleBottom=obstacle.getYCoord()+obstacle.getHeight();
+            //System.out.println(obstacle.getXCoord());
             //System.out.println(playerRight +">" + obstacleLeft);
             //System.out.println(playerTop +"<" + obstacleBottom);
-            //System.out.println(playerBottom +"<" + obstacleTop);
-            if(playerRight>=obstacleLeft && playerTop<=obstacleBottom && playerBottom<=obstacleTop){
+            //System.out.println(playerBottom +">" + obstacleTop);
+            if(playerRight>=obstacleLeft && playerTop<=obstacleBottom && playerBottom>=obstacleTop){
                 return true;
             }
             return false;
 	}
 	private static boolean hitObstacleDown(Player player, Obstacle obstacle){
 		//Skapa sannisgsv�rde f�r om spelaren landar p� ett object
-
-               
-	return false;
+            int playerLeft,playerRight,playerBottom,playerTop,obstacleTop,obstacleLeft,obstacleRight,obstacleBottom;
+            playerLeft=player.getXCoord();
+            playerRight=player.getXCoord()+player.getWidth();
+            playerBottom=player.getYCoord()+player.getHeight();
+            playerTop=player.getYCoord();
+            obstacleLeft=obstacle.getXCoord();
+            obstacleRight=obstacle.getXCoord()+obstacle.getWidth();
+            obstacleTop=obstacle.getYCoord();
+            obstacleBottom=obstacle.getYCoord()+obstacle.getHeight();
+            //System.out.println(obstacle.getXCoord());
+            //System.out.println(playerRight +">" + obstacleLeft);
+            //System.out.println(playerTop +"<" + obstacleBottom);
+            //System.out.println(playerBottom +">" + obstacleTop);
+            if(playerRight>=obstacleLeft && playerTop<=obstacleBottom && playerBottom>=obstacleTop){
+                return true;
+            }
+            return false;
 	}
 		
 

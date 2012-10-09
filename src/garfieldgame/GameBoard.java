@@ -22,7 +22,7 @@ public class GameBoard {
             this.width=width;
             this.height=height;
             this.map = new Map(width*50, height, width);
-            player  = new Player(50, 50, 50, 650); 
+            player  = new Player(100, 60, 50, 600); 
             //addPlayer(player);
             obstacles = new ArrayList<Obstacle>();
             powerbottles = new ArrayList<Powerbottle>();
