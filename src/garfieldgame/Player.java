@@ -1,7 +1,17 @@
 package garfieldgame;
 
+        
 public class Player implements BoardObject {
 	private int height, width, xCoord, yCoord;
+        
+        private int jumpCounter=0;
+	private int fallCounter=0;
+        private PlayerStatus status;
+/*	private boolean jumping = false;
+	private boolean falling = false;
+	private boolean crouching = false;
+	private boolean standing = true;
+	private boolean unCrouch = false;*/
 	//int balansm�tare, skapa en balansm�tare
 	
 	
@@ -10,54 +20,82 @@ public class Player implements BoardObject {
 		this.width=width;
 		this.xCoord=xCoord;
 		this.yCoord=yCoord;
-	}
-	
-	public int jump(int jumpCounter){
+                status=PlayerStatus.STANDING;
+        }    
+        public void setStatus(PlayerStatus status){
+            this.status = status;
+        }
+        
+        public void takeAction(){
+            System.out.println(status);
+            if(status.equals(PlayerStatus.STANDING)){
+                
+                return;
+            }
+            else if (status.equals(PlayerStatus.JUMPING)){
+		jump();
+		if(jumpCounter==0){
+                    status=PlayerStatus.FALLING;
+		}
+            }
+            else if (status.equals(PlayerStatus.FALLING)){
+                land();
+                if (fallCounter ==0){
+                    status=PlayerStatus.STANDING;
+                }
+            }
+            else if (status.equals(PlayerStatus.CROUCHING)){
+                crouch();
+            }
+            else if (status.equals(PlayerStatus.UNCROUCHING)){
+                unCrouch();
+            }
+        }
+        public void jump(){
 		//�ndra hur objectet hoppar
+            status=PlayerStatus.JUMPING;
 		if(jumpCounter < 100){
-			this.yCoord = this.yCoord - 4;
-			jumpCounter+=2;
+			this.yCoord -= 4;
+			jumpCounter +=2;
 			//Fixa en mjukare funktion om det finns tid
 		}
 		else{
-			jumpCounter=0;
+			status=PlayerStatus.FALLING;
 			//Sl� ig�ng "landa" funktionen
 		}
-		return jumpCounter;
 	}
 
 	
 	//Ev en funktion f�r att f� objectet att r�ra sig ned�t igen
-	public int land(int fallCounter){
+	public void land(){
+            status=PlayerStatus.FALLING;
 		if(fallCounter < 100){
 			this.yCoord += 4;
 			fallCounter+=2;
 			//Fixa en mjukare funktion om det finns tid
 		}
 		else{
-			fallCounter=0;
+			status=PlayerStatus.STANDING;
 			//Sl� ig�ng "landa" funktionen
 		}
-		return fallCounter;
 		
 	}
 	
-	public boolean crouch(boolean standing){
-		if (standing){
+	public void crouch(){
+		if (status.equals(PlayerStatus.STANDING)){
 			this.height = this.height/2;
 			this.yCoord = this.yCoord + this.height;
-			standing=false;
+                        status=PlayerStatus.CROUCHING;
 		}
-		return standing;
 		//komprimera objectet
 	}
 	
-	public boolean unCrouch(boolean standing){
-		if (!standing){
-			this.height = this.height*2;
-			standing = true;
+	public void unCrouch(){
+		if (status.equals(PlayerStatus.CROUCHING)){
+                    this.yCoord -= this.height;
+                    this.height = this.height*2;
+                    status=PlayerStatus.STANDING;
 		}
-		return standing;
 	}
 	
 	public void balanceLeft(){

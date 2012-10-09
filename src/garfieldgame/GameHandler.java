@@ -7,11 +7,19 @@ public class GameHandler {
         board.moveWholeBoard();
         if(!board.getObstacles().isEmpty()){
             //System.out.println("ej tom");
-            if(hitObstacleRight(board.getPlayer(), board.getObstacles().get(0))){
-                System.out.println("träff");
+            for(Obstacle obstacle : board.getObstacles()){
+                if(intersects(board.getPlayer(),obstacle)){
+                    System.out.println("träff obstacle");
+                }
             }
         }
-        //checkIfHitOnBoard(board.getPlayer(), board.getObstacles().get(0), board.getPowerBottles().get(0));
+        if(!board.getPowerbottles().isEmpty()){
+            for(Powerbottle bottle : board.getPowerbottles()){
+                if(intersects(board.getPlayer(),bottle)){
+                    System.out.println("träff bottle");
+                }
+            }
+        }
     }
 	public static boolean checkIfFalling(){
 		//Kolla om spelaren har n�got "fast" under sig
@@ -29,11 +37,32 @@ public class GameHandler {
                 System.out.println("träff");
             }*/
 	}
-	
+	    
 	/*****************************************
 	 *SANNINGSV�RDEN F�R KOLLISION MED HINDER*
 	 *****************************************/
 	
+        private static boolean intersects(BoardObject obj1,BoardObject obj2){
+                     int obj1Left,obj1Right,obj1Bottom,obj1Top,obj2Top,obj2Left,obj2Right,obj2Bottom;
+            obj1Left=obj1.getXCoord();
+            obj1Right=obj1.getXCoord()+obj1.getWidth();
+            obj1Bottom=obj1.getYCoord()+obj1.getHeight();
+            obj1Top=obj1.getYCoord();
+            obj2Left=obj2.getXCoord();
+            obj2Right=obj2.getXCoord()+obj2.getWidth();
+            obj2Top=obj2.getYCoord();
+            obj2Bottom=obj2.getYCoord()+obj2.getHeight();
+            //System.out.println(obstacle.getXCoord());
+            //System.out.println(playerRight +">" + obstacleLeft);
+            //System.out.println(playerTop +"<" + obstacleBottom);
+            //System.out.println(playerBottom +">" + obstacleTop);
+            if(obj1Right>=obj2Left && obj1Top<=obj2Bottom && obj1Bottom>=obj2Top && obj1Left<=obj2Right){
+                return true;
+            }
+            return false;   
+        }
+        
+        
 	private static boolean hitObstacle(Player player, Obstacle obstacle){
 		//K�r kollisionskoll f�r alla v�rden
 		//Anv�nder sig av nedanst�ende metoder
@@ -81,7 +110,8 @@ public class GameHandler {
             //System.out.println(playerRight +">" + obstacleLeft);
             //System.out.println(playerTop +"<" + obstacleBottom);
             //System.out.println(playerBottom +">" + obstacleTop);
-            if(playerRight>=obstacleLeft && playerTop<=obstacleBottom && playerBottom>=obstacleTop){
+            if(playerRight>=obstacleLeft && playerLeft<=obstacleRight &&
+                    playerTop<=obstacleBottom && playerBottom>=obstacleTop){
                 return true;
             }
             return false;

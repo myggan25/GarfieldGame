@@ -12,7 +12,7 @@ public class Game {
 
 	public static void main(String[] args) {
             //H�R SKA VI GEJMA!
-            final GameBoard board = new GameBoard(1200,800);
+            final GameBoard board = new GameBoard(1200,600);
             final Frame frame = new Frame(board);
 		
             final Action doOneStep = new AbstractAction() {

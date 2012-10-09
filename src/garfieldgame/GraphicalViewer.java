@@ -58,7 +58,7 @@ public class GraphicalViewer extends JComponent implements BoardListener {
 				gameBoard.getPlayer().getWidth(),gameBoard.getPlayer().getHeight()));		
 		g2.setPaint(new Color(255,69,0));
 		g2.fill(playerArea);
-                final Area testArea = new Area(new Rectangle2D.Float(
+                /*final Area testArea = new Area(new Rectangle2D.Float(
                         gameBoard.getPlayer().getXCoord()+gameBoard.getPlayer().getWidth(),gameBoard.getPlayer().getYCoord()-100,
 			1,gameBoard.getPlayer().getHeight()));
                             
@@ -69,6 +69,7 @@ public class GraphicalViewer extends JComponent implements BoardListener {
 			gameBoard.getPlayer().getWidth(),1));
                 g2.setPaint(new Color(0,150,0));
                 g2.fill(test2Area);
+                */
 	}
 	
 	private void paintObstacle(Graphics2D g2){
@@ -79,18 +80,18 @@ public class GraphicalViewer extends JComponent implements BoardListener {
                 //System.out.println(obstacle.getXCoord());
                 g2.setPaint(new Color(100,100,100));
                 g2.fill(obstacleArea);
-                final Area testArea = new Area(new Rectangle2D.Float(
+                /*final Area testArea = new Area(new Rectangle2D.Float(
                             obstacle.getXCoord(),obstacle.getYCoord()-100,1,obstacle.getHeight()));
                 g2.setPaint(new Color(0,150,0));
                 g2.fill(testArea);
-                
+                */
             }
 		
 	}
 	
 	private void paintPowerbottle(Graphics2D g2){
 		//Rita ut energiflaska
-            for(Powerbottle bottle : gameBoard.getPowerBottles()){
+            for(Powerbottle bottle : gameBoard.getPowerbottles()){
 		final Area powerbottleArea = new Area(new Rectangle2D.Float(
                         bottle.getXCoord(),bottle.getYCoord(),bottle.getWidth(),bottle.getHeight()));
 				//gameBoard.getCurrentPowerbottle().getXCoordMap(),gameBoard.getCurrentPowerbottle().getYCoord(),gameBoard.getCurrentPowerbottle().getWidth(),gameBoard.getCurrentPowerbottle().getHeight()));

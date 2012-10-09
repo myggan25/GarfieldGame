@@ -14,15 +14,22 @@ public class Frame extends JFrame {
 		public void actionPerformed(ActionEvent e){
 			//Utf�r hopp
                     //board.getMap().getObstacle().setHeight(board.getMap().getObstacle().getHeight()+1);
-			board.setJump(true);
+			board.getPlayer().jump();
 		}
 	};
 	final Action crouch = new AbstractAction()  {
 		public void actionPerformed(ActionEvent e){
 			//Utf�r ducka
-			board.setCrouch(true);
+			board.getPlayer().crouch();
 		}
 	};
+        final Action uncrouch = new AbstractAction()  {
+		public void actionPerformed(ActionEvent e){
+			//Utf�r ducka
+			board.getPlayer().unCrouch();
+		}
+	};
+
 	final Action balanceRight = new AbstractAction()  {
 		public void actionPerformed(ActionEvent e){
 			//Utf�r balanskorektion �t h�ger
@@ -54,10 +61,18 @@ public class Frame extends JFrame {
                     "jump");
             gameArea.getActionMap().put("jump",
                     jump);
+            
             gameArea.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("DOWN"),
-                    "crouch");
-            gameArea.getActionMap().put("crouch",
+                    "crouchPressed");
+            gameArea.getActionMap().put("crouchPressed",
                     crouch);
+            
+            gameArea.getInputMap().put(KeyStroke.getKeyStroke("released DOWN"),
+                            "crouchReleased");
+            gameArea.getActionMap().put("crouchReleased",
+                    uncrouch);
+            
+            
             gameArea.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("RIGHT"),
                     "right");
             gameArea.getActionMap().put("right",

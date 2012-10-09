@@ -9,20 +9,15 @@ public class GameBoard {
 	private Map map;
 	private ArrayList<Obstacle> obstacles;
 	private ArrayList<Powerbottle> powerbottles;
-	private int jumpCounter=0;
-	private int fallCounter=0;
-	private boolean jumping = false;
-	private boolean falling = false;
-	private boolean crouching = false;
-	private boolean standing = true;
-	private boolean unCrouch = false;
+
+        
 	
 	public GameBoard(int width, int height){
             boardListeners = new ArrayList<BoardListener>();
             this.width=width;
             this.height=height;
             this.map = new Map(width*50, height, width);
-            player  = new Player(100, 60, 50, 600); 
+            player  = new Player(100, 60, 50, 400); 
             //addPlayer(player);
             obstacles = new ArrayList<Obstacle>();
             powerbottles = new ArrayList<Powerbottle>();
@@ -38,25 +33,7 @@ public class GameBoard {
 	public void tick(){
 		//anropa GameHandlers tick f�r att �ndra spelet, dvs flytta spelplanen framm�t
 		GameHandler.tick(this);
-		if (jumping){
-			jumpCounter = player.jump(jumpCounter);
-			if(jumpCounter==0){
-				jumping = false;
-				falling = true;
-			}
-		}
-		else if (falling){
-			fallCounter = player.land(fallCounter);
-			if (fallCounter ==0){
-				falling=false;
-			}
-		}
-		else if (crouching){
-			standing = player.crouch(standing);
-		}
-		else if (unCrouch){
-			standing = player.unCrouch(standing);
-		}
+                player.takeAction();        
 		notifyListeners();
 	}
         public void moveWholeBoard(){
@@ -119,7 +96,7 @@ public class GameBoard {
         public ArrayList<Obstacle> getObstacles(){
             return obstacles;
         }
-        public ArrayList<Powerbottle> getPowerBottles(){
+        public ArrayList<Powerbottle> getPowerbottles(){
             return powerbottles;
         }
         
@@ -131,7 +108,7 @@ public class GameBoard {
 		this.player = player;
 	}
 	
-	public void setJump(boolean jump){
+	/*public void setJump(boolean jump){
 		jumping = jump;
 	}
 	
@@ -141,7 +118,7 @@ public class GameBoard {
 	
 	public void setUnCrouch(boolean unCrouched){
 		unCrouch = unCrouched;
-	}
+	}*/
 	
 	/*---------
 	 * GETTERS
