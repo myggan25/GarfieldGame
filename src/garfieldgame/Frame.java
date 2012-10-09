@@ -14,7 +14,10 @@ public class Frame extends JFrame {
 		public void actionPerformed(ActionEvent e){
 			//Utf�r hopp
                     //board.getMap().getObstacle().setHeight(board.getMap().getObstacle().getHeight()+1);
-			board.getPlayer().jump();
+                        if(!(board.getPlayer().getStatus().equals(PlayerStatus.FALLING) ||
+                                board.getPlayer().getStatus().equals(PlayerStatus.JUMPING))){
+                            board.getPlayer().jump();
+                        }
 		}
 	};
 	final Action crouch = new AbstractAction()  {

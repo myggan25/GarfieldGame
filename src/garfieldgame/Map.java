@@ -3,7 +3,7 @@ package garfieldgame;
 import java.util.ArrayList;
 
 public class Map {
-	private final int lowDefaultXCoordObstacle=400, highDefaultXCoordObstacle=100;
+	private final int lowDefaultXCoordObstacle, highDefaultXCoordObstacle, groundXCoord;
 	private final int mapLength;
 	private final int mapHeight;
 	private Obstacle obstacle;
@@ -16,6 +16,9 @@ public class Map {
 	public Map(int length, int height,int visibleWidth){
 		this.mapHeight=height;
 		this.mapLength=length;
+                lowDefaultXCoordObstacle=height-100;
+                highDefaultXCoordObstacle=height-160;
+                groundXCoord=height;
 		leftBorder=0;
 		rightBorder=visibleWidth;
                 obstacles = new ArrayList<Obstacle>();
@@ -33,7 +36,7 @@ public class Map {
 	
 	public void moveMapLeft(){
 		//leftBorder+=4;
-		rightBorder+=4;
+		//rightBorder+=4;
                 for(Obstacle obstacle : obstacles){
                     //obstacle.setXCoord(obstacle.getXCoord()-4);
                     obstacle.moveLeft();
@@ -52,13 +55,20 @@ public class Map {
             powerbottles.add(new Powerbottle(20, 10, 1200, 300));
             powerbottles.add(new Powerbottle(20, 10, 1400, 300));
                 
-            obstacles.add(new Obstacle(100, 100, 400, highDefaultXCoordObstacle));
-            obstacles.add(new Obstacle(100, 500, 700, lowDefaultXCoordObstacle));
+            //obstacles.add(new Obstacle(100, 100, 400, highDefaultXCoordObstacle));
+            //obstacles.add(new Obstacle(100, 500, 700, lowDefaultXCoordObstacle));
             obstacles.add(new Obstacle(100, 100, 1000, highDefaultXCoordObstacle));
             obstacles.add(new Obstacle(100, 100, 1300, lowDefaultXCoordObstacle));
             obstacles.add(new Obstacle(100, 100, 1600, lowDefaultXCoordObstacle));
             obstacles.add(new Obstacle(100, 100, 2000, highDefaultXCoordObstacle));
             obstacles.add(new Obstacle(100, 100, 2100, lowDefaultXCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 2500, highDefaultXCoordObstacle));
+            obstacles.add(new Obstacle(100, 500, 2900, lowDefaultXCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 3500, highDefaultXCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 3600, lowDefaultXCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 3800, lowDefaultXCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 4000, highDefaultXCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 4100, lowDefaultXCoordObstacle));
 	}
 	
 	/*public boolean checkIfObstacleOnScreen(){

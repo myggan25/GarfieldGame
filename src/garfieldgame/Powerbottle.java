@@ -15,7 +15,7 @@ public class Powerbottle implements BoardObject {
 	}
 	
 	public void moveLeft(){
-            xCoord-=4;
+            xCoord-=2;
 		//Flytta flaskan �t v�nster
 	}
 	

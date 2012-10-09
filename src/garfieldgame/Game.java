@@ -25,7 +25,7 @@ public class Game {
                 }
             };
             //frame.setVisible(true);
-            final Timer clockTimer = new Timer(50, doOneStep);
+            final Timer clockTimer = new Timer(10, doOneStep);
             clockTimer.setCoalesce(true);
             clockTimer.start();	
 	}

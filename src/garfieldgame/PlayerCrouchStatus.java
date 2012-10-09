@@ -6,10 +6,9 @@ package garfieldgame;
 
 /**
  *
- * @author Myggan
+ * @author robin
  */
-public enum PlayerStatus {
-    JUMPING,
-    FALLING,
-    STANDING
+public enum PlayerCrouchStatus {
+    CROUCHING,
+    STANDING 
 }

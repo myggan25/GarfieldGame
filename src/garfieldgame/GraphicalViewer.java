@@ -22,7 +22,7 @@ public class GraphicalViewer extends JComponent implements BoardListener {
 	}
 	
 	public Dimension getPreferredSize(){
-		return new Dimension(gameBoard.getWidth(), gameBoard.getHeight());
+		return new Dimension(gameBoard.getWidth(), gameBoard.getHeight()+gameBoard.getGroundHeight());
 	}
 	
 	public void insertNewGameBoard(GameBoard gameBoard){
@@ -46,7 +46,7 @@ public class GraphicalViewer extends JComponent implements BoardListener {
             g2.setPaint(new Color(0,0,30));
             g2.fill(background);
             final Area floorArea = new Area(new Rectangle2D.Float(
-                                    0,gameBoard.getHeight()-100,gameBoard.getWidth(),100));
+                                    0,gameBoard.getHeight(),gameBoard.getWidth(),gameBoard.getGroundHeight()));
             g2.setPaint(new Color(0,0,255));
             g2.fill(floorArea);    
         }

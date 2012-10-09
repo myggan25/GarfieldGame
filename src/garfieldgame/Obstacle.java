@@ -16,7 +16,7 @@ public class Obstacle implements BoardObject {
 	
 	public void moveLeft(){
 		//Flytta hindret �t v�nster
-            xCoord-=4;
+            xCoord-=2;
             
 	}
 	
