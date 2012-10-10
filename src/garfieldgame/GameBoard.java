@@ -68,7 +68,7 @@ public class GameBoard {
                 }
         }
         private void ifEndOfMapCreateNew(){
-            System.out.println(obstaclesLeft());
+            //System.out.println(obstaclesLeft());
             if(!obstaclesLeft() && !map.obstaclesLeft()){
                 map = new Map(width*50, height, width);
             }

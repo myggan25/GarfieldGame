@@ -10,7 +10,12 @@ public class Player implements BoardObject {
         private PlayerStatus status;
         private PlayerCrouchStatus crouchStatus;
         private int score;
+        private int numberOfPowerBottles;
 	//int balansm�tare, skapa en balansm�tare
+        private int drunkValue;
+        private int wobbleValue;
+        private int wobbleCounter;
+        private boolean wobbleForward;
 	
 	
 	public Player(int height, int width, int xCoord, int yCoord){
@@ -21,9 +26,36 @@ public class Player implements BoardObject {
                 status=PlayerStatus.STANDING;
                 crouchStatus=PlayerCrouchStatus.STANDING;
                 score = 0;
+                drunkValue = 0;
+                wobbleValue = 0;
+                wobbleCounter = 0;
+                
         }    
         public void setStatus(PlayerStatus status){
             this.status = status;
+        }
+        private void increaseScore(){
+            score++;
+        }
+        private void increaseWobble(){
+            if(wobbleCounter<drunkValue){
+                wobbleCounter++;
+                wobbleValue++;
+            }
+            else{
+                wobbleCounter=0;
+                wobbleValue=0;
+                if(wobbleForward)
+                    wobbleForward=false;
+                else
+                    wobbleForward=true;
+            }
+        }
+        private void wobbleForward(){
+            
+        }
+        private void wobbleBackward(){
+            
         }
         
         public void takeAction(){
@@ -144,10 +176,20 @@ public class Player implements BoardObject {
 	public void balanceRight(){
 		//balanskorrigera �t h�ger, dvs f� objectet att luta �t h�ger
 	}
+        public void increasPowerbottles(){
+            drunkValue++;
+            numberOfPowerBottles++;
+        }
+        public void decreasePowerbottles(){
+            numberOfPowerBottles--;
+        }
 
 	/**********
 	 * GETTERS
 	 **********/
+        public int getPowerbottles(){
+            return numberOfPowerBottles;
+        }
         public int getScore(){
             return score;
         }

@@ -25,7 +25,6 @@ public class GameHandler {
             board.getPlayer().landOnObject(distanceFromGround);
         }
         if(emptyUnder(board) && board.getPlayer().getStatus()==PlayerStatus.STANDING){
-            //board.getPlayer().setStatus(PlayerStatus.FALLING);
             if(distanceFromGround!=-1){
                 board.getPlayer().landOnObject(distanceFromGround);
             }
@@ -37,7 +36,7 @@ public class GameHandler {
         if(!board.getPowerbottles().isEmpty()){
             for(Powerbottle bottle : board.getPowerbottles()){
                 if(intersects(board.getPlayer(),bottle)){
-                    //System.out.println("träff bottle");
+                    board.getPlayer().increasPowerbottles();
                     tempBottle = bottle;
                     //board.removeBottleFromBoard(bottle);
                 }
