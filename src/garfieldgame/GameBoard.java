@@ -10,7 +10,6 @@ public class GameBoard {
 	private ArrayList<Obstacle> obstacles;
 	private ArrayList<Powerbottle> powerbottles;
         private Boolean gameOver;
-
         
 	
 	public GameBoard(int width, int height){
@@ -56,6 +55,7 @@ public class GameBoard {
 		moveBottleFromMapToBoard();
                 removeObstacleFromBoard();
                 removeBottleFromBoard();
+                ifEndOfMapCreateNew();
         }
         
         private void moveObjectsOnBoard(){
@@ -66,6 +66,12 @@ public class GameBoard {
                     bottle.moveLeft();
                     
                 }
+        }
+        private void ifEndOfMapCreateNew(){
+            System.out.println(obstaclesLeft());
+            if(!obstaclesLeft() && !map.obstaclesLeft()){
+                map = new Map(width*50, height, width);
+            }
         }
 	
 	public void addBoardListener(BoardListener bl){
@@ -80,6 +86,16 @@ public class GameBoard {
 			}
 		}
 	}
+        
+        private boolean obstaclesLeft(){
+            if(obstacles.isEmpty()){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+        
 	
         private void moveObstacleFromMapToBoard(){
             Obstacle tempObs;

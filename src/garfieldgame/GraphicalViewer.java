@@ -3,6 +3,8 @@ package garfieldgame;
 import java.awt.*;
 import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
+import java.awt.Font;
+import java.awt.font.TextLayout;
 
 import javax.swing.*;
 
@@ -33,12 +35,25 @@ public class GraphicalViewer extends JComponent implements BoardListener {
             //System.out.println("ritar ut");
             Graphics2D g2 = (Graphics2D)g;
             //Rita ut spelplanen
+            //paintScore(g2);
             paintBackground(g2);
             paintPlayer(g2);
             paintObstacle(g2);
             paintPowerbottle(g2);
+            paintScore(g2);
         
 	}
+        
+        private void paintScore(Graphics2D g2){
+            //TextLayout tl = new TextLayout("hello", new Font("Arial", Font.BOLD, 50), g2.getFontRenderContext());
+            //Shape outline = tl.getOutline(null);
+            g2.setPaint(new Color(255,255,255));
+            g2.setFont(new Font("Arial", Font.BOLD, 25));
+            g2.drawString(Integer.toString(gameBoard.getPlayer().getScore()),gameBoard.getWidth()-80, 20);
+            /*g2.setStroke(new BasicStroke(2.5f));
+            g2.setColor(Color.WHITE);
+            g2.draw(outline);*/
+        }
         private void paintBackground(Graphics2D g2){
         final Area background = new Area(new Rectangle2D.Float(
 				0,0,gameBoard.getWidth(),gameBoard.getHeight()));

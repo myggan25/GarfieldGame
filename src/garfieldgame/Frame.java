@@ -10,11 +10,21 @@ public class Frame extends JFrame {
 	GraphicalViewer gameArea;
 	GameBoard board;
 	
+        final Action superJump = new AbstractAction()  {
+		public void actionPerformed(ActionEvent e){
+			//Utf�r hopp
+                    //board.getMap().getObstacle().setHeight(board.getMap().getObstacle().getHeight()+1);
+                        if(!(board.getPlayer().getStatus().equals(PlayerStatus.FALLING) || board.getPlayer().getStatus().equals(PlayerStatus.SUPERJUMPING) ||
+                                board.getPlayer().getStatus().equals(PlayerStatus.JUMPING) || board.getPlayer().getCrouchStatus().equals(PlayerCrouchStatus.CROUCHING))){
+                            board.getPlayer().superJump();
+                        }
+		}
+	};
 	final Action jump = new AbstractAction()  {
 		public void actionPerformed(ActionEvent e){
 			//Utf�r hopp
                     //board.getMap().getObstacle().setHeight(board.getMap().getObstacle().getHeight()+1);
-                        if(!(board.getPlayer().getStatus().equals(PlayerStatus.FALLING) ||
+                        if(!(board.getPlayer().getStatus().equals(PlayerStatus.FALLING) || board.getPlayer().getStatus().equals(PlayerStatus.SUPERJUMPING) ||
                                 board.getPlayer().getStatus().equals(PlayerStatus.JUMPING) || board.getPlayer().getCrouchStatus().equals(PlayerCrouchStatus.CROUCHING))){
                             board.getPlayer().jump();
                         }
@@ -62,7 +72,10 @@ public class Frame extends JFrame {
                     "jump");
             gameArea.getActionMap().put("jump",
                     jump);
-            
+            gameArea.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("SPACE"),
+                    "superjump");
+            gameArea.getActionMap().put("superjump",
+                    superJump);
             gameArea.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("DOWN"),
                     "crouchPressed");
             gameArea.getActionMap().put("crouchPressed",

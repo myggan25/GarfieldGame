@@ -9,6 +9,7 @@ public class Player implements BoardObject {
 	private int fallCounter=0;
         private PlayerStatus status;
         private PlayerCrouchStatus crouchStatus;
+        private int score;
 	//int balansm�tare, skapa en balansm�tare
 	
 	
@@ -19,6 +20,7 @@ public class Player implements BoardObject {
 		this.yCoord=yCoord;
                 status=PlayerStatus.STANDING;
                 crouchStatus=PlayerCrouchStatus.STANDING;
+                score = 0;
         }    
         public void setStatus(PlayerStatus status){
             this.status = status;
@@ -26,8 +28,12 @@ public class Player implements BoardObject {
         
         public void takeAction(){
             //System.out.println(status);
+            score++;
             if (status.equals(PlayerStatus.JUMPING)){
 		jump();
+            }
+            else if (status.equals(PlayerStatus.SUPERJUMPING)){
+		superJump();
 		/*if(jumpCounter==0){
                     status=PlayerStatus.FALLING;
 		}*/
@@ -45,11 +51,29 @@ public class Player implements BoardObject {
                 unCrouch();
             }*/
         }
+        public void superJump(){
+		//�ndra hur objectet hoppar
+            status=PlayerStatus.SUPERJUMPING;
+            if(jumpCounter < 50){
+		if(jumpCounter == 10 || jumpCounter==20 || jumpCounter==30 || jumpCounter==40){
+                    velocity-=2;
+                }
+			this.yCoord -= velocity;
+			jumpCounter +=1;
+			//Fixa en mjukare funktion om det finns tid
+		}
+		else{
+                    jumpCounter =0;
+                    //velocity = 0;
+			status=PlayerStatus.FALLING;
+			//Sl� ig�ng "landa" funktionen
+		}
+	}
         public void jump(){
 		//�ndra hur objectet hoppar
             status=PlayerStatus.JUMPING;
-            if(jumpCounter < 50){
-		if(jumpCounter == 10 || jumpCounter==20 || jumpCounter==30 || jumpCounter==40){
+            if(jumpCounter < 25){
+		if(jumpCounter == 7 || jumpCounter==15 || jumpCounter==12 || jumpCounter==22 ){
                     velocity-=2;
                 }
 			this.yCoord -= velocity;
@@ -124,6 +148,10 @@ public class Player implements BoardObject {
 	/**********
 	 * GETTERS
 	 **********/
+        public int getScore(){
+            return score;
+        }
+        
         public PlayerStatus getStatus(){
             return status;
         }

@@ -87,8 +87,11 @@ public class Map {
             obstacles.add(new Obstacle(100, 100, 4500, lowDefaultYCoordObstacle));
             obstacles.add(new Obstacle(100, 100, 4900, midDefaultYCoordObstacle));
             obstacles.add(new Obstacle(100, 100, 5300, highDefaultYCoordObstacle));
-            obstacles.add(new Obstacle(100, 100, 5400, lowDefaultYCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 5600, lowDefaultYCoordObstacle));
         }
+        
+        
+        
         private Obstacle createObstacle(int xCoord){
             Random generator = new Random();
             int height = 50+generator.nextInt(100);
@@ -106,6 +109,26 @@ public class Map {
                 obstacles.add(createObstacle(i*170+1000));
             }
             
+        }
+        public void createMap4(){
+            powerbottles.add(new Powerbottle(20, 10, 1300, 300));
+            powerbottles.add(new Powerbottle(20, 10, 1500, 300));
+            powerbottles.add(new Powerbottle(20, 10, 1700, 300));
+            powerbottles.add(new Powerbottle(20, 10, 2000, 300));
+            powerbottles.add(new Powerbottle(20, 10, 2400, 300));
+                
+            
+            obstacles.add(new Obstacle(100, 100, 1600, lowDefaultYCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 1900, highDefaultYCoordObstacle));
+        }
+        
+        public boolean obstaclesLeft(){
+            if(obstacles.isEmpty()){
+                return false;
+            }
+            else{
+                return true;
+            }
         }
 	
 	/*public boolean checkIfObstacleOnScreen(){
@@ -160,10 +183,10 @@ public class Map {
             }
             return null;
         }
-        public Obstacle getObstacleInBoard(){
+        /*public Obstacle getObstacleInBoard(){
 		//H�mta powerbottle om den �r i gameBoard
 		return obstacle;
-	}
+	}*/
 	
 	public Powerbottle getPowerbottle(){
 		//H�mta powerbottle fr�n Powerbottle
