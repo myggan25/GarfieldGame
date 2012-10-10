@@ -19,7 +19,7 @@ public class GameHandler {
                     board.getPlayer().setStatus(PlayerStatus.FALLING);
                 }*/
                 if(intersects(board.getPlayer(),obstacle)){
-                    System.out.println("dö");
+                    //System.out.println("dö");
                     
                     //board.getPlayer().setStatus(PlayerStatus.STANDING);
                     //board.getPlayer().landOnObject();
@@ -29,6 +29,9 @@ public class GameHandler {
         distanceFromGround = landOnGround(board);
         if(distanceFromGround!=-1 && board.getPlayer().getStatus()==PlayerStatus.FALLING){
             board.getPlayer().landOnObject(distanceFromGround);
+        }
+        if(!emptyUnder(board) && board.getPlayer().getStatus()==PlayerStatus.STANDING){
+            board.getPlayer().fall();
         }
         
         if(!board.getPowerbottles().isEmpty()){
@@ -63,14 +66,32 @@ public class GameHandler {
                 return -1;
             }
         }
-        private static boolean emptyUnder(BoardObject player, BoardObject object){
-            if(player.getXCoord()>=object.getXCoord()+object.getWidth() && player.getXCoord()+player.getWidth()<=object.getXCoord() &&
-                    player.getYCoord()+player.getHeight()>object.getYCoord()){
+        private static boolean emptyUnder(GameBoard board){
+            Player player = board.getPlayer();
+            for(Obstacle obstacle : board.getObstacles()){
+                if(player.getXCoord()<=obstacle.getXCoord()+obstacle.getWidth() && player.getXCoord()+player.getWidth()>=obstacle.getXCoord() &&
+                        player.getYCoord()+player.getHeight()+10>=obstacle.getYCoord() && player.getYCoord()+player.getHeight()<=obstacle.getYCoord()){
+                    return false;
+                }
+            }
+                return true;
+            
+            /*for(Obstacle obstacle : board.getObstacles()){
+                if(player.getXCoord()<=obstacle.getXCoord()+obstacle.getWidth() && player.getXCoord()+player.getWidth()>=obstacle.getXCoord() &&
+                        player.getYCoord()+player.getHeight()>=obstacle.getYCoord()){
+                    System.out.println("träff");
+                    return false;
+                }
+            }
+            if(player.getYCoord()+player.getHeight()==board.getHeight()){
+                System.out.println("player " + (player.getYCoord()+player.getHeight()));
+                System.out.println("board " + board.getHeight());
+                if(player.getYCoord()+player.getHeight()>=board.getHeight()){
+                    //System.out.println("ok");
+                }
                 return false;
             }
-            else{
-                return true;
-            }
+            return true;*/
         }
          /***
          * Returns the distance in pixels to the ground below

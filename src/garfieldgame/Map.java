@@ -55,8 +55,8 @@ public class Map {
             powerbottles.add(new Powerbottle(20, 10, 1200, 300));
             powerbottles.add(new Powerbottle(20, 10, 1400, 300));
                 
-            //obstacles.add(new Obstacle(100, 100, 400, highDefaultXCoordObstacle));
-            //obstacles.add(new Obstacle(100, 500, 700, lowDefaultXCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 400, highDefaultXCoordObstacle));
+            obstacles.add(new Obstacle(100, 500, 700, lowDefaultXCoordObstacle));
             obstacles.add(new Obstacle(100, 100, 1000, highDefaultXCoordObstacle));
             obstacles.add(new Obstacle(100, 100, 1300, lowDefaultXCoordObstacle));
             obstacles.add(new Obstacle(100, 100, 1600, lowDefaultXCoordObstacle));

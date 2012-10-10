@@ -25,7 +25,7 @@ public class Player implements BoardObject {
         }
         
         public void takeAction(){
-            System.out.println(status);
+            //System.out.println(status);
             if (status.equals(PlayerStatus.JUMPING)){
 		jump();
 		/*if(jumpCounter==0){
