@@ -15,7 +15,7 @@ public class Frame extends JFrame {
 			//Utf�r hopp
                     //board.getMap().getObstacle().setHeight(board.getMap().getObstacle().getHeight()+1);
                         if(!(board.getPlayer().getStatus().equals(PlayerStatus.FALLING) ||
-                                board.getPlayer().getStatus().equals(PlayerStatus.JUMPING))){
+                                board.getPlayer().getStatus().equals(PlayerStatus.JUMPING) || board.getPlayer().getCrouchStatus().equals(PlayerCrouchStatus.CROUCHING))){
                             board.getPlayer().jump();
                         }
 		}
@@ -51,8 +51,6 @@ public class Frame extends JFrame {
             this.board = board;
             gameArea = new GraphicalViewer(board);
             
-            
-		
             createMenu();
             //createKeyBoardListeners();
             gameArea = new GraphicalViewer(board);
@@ -95,49 +93,58 @@ public class Frame extends JFrame {
 	public void updateFrame(GameBoard board){
 		//S�tt in en ny board och g�r den visible
 		this.board = board;
-		gameArea.insertNewGameBoard(board);
-                //den nedan gör att det fungerar men ska inte gå genom denna egentligen
-                //gameArea.boardChanged();
+                Object[] options = {"Restart", "Exit"};
+                if(board.isGameOver()){
+                        int answer = JOptionPane.showOptionDialog
+                            (new java.awt.Frame(), "Do you want to restart the game?", "You Died!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
+                        if (answer == JOptionPane.NO_OPTION) {
+                            System.exit(0);
+                        }
+                        else{
+                            board.reset();
+                        }
+                    }
+                    gameArea.insertNewGameBoard(board);
 		this.setVisible(true);
 	}
 	
 	
 	
 	private void createMenu(){
-		//Skapa meny f�r start och stopp
-		final JMenuBar menuBar = new JMenuBar();
+            //Skapa meny f�r start och stopp
+            final JMenuBar menuBar = new JMenuBar();
 		
-		final JMenu gameMenu = new JMenu("Game");
-		menuBar.add(gameMenu);
-		JMenuItem startActionItem = new JMenuItem("Start");
-		JMenuItem stopActionItem = new JMenuItem("Stop");
-		JMenuItem exitActionItem = new JMenuItem("Exit");
-		gameMenu.add(startActionItem);
-		gameMenu.add(stopActionItem);
-		gameMenu.addSeparator();
-		gameMenu.add(exitActionItem);
-		
-		setJMenuBar(menuBar);
-		
-		//Lyssnare f�r menyknapparna
-		startActionItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            final JMenu gameMenu = new JMenu("Game");
+            menuBar.add(gameMenu);
+            //JMenuItem startActionItem = new JMenuItem("Start");
+            //JMenuItem stopActionItem = new JMenuItem("Stop");
+            JMenuItem exitActionItem = new JMenuItem("Exit");
+            //gameMenu.add(startActionItem);
+            //gameMenu.add(stopActionItem);
+            gameMenu.addSeparator();
+            gameMenu.add(exitActionItem);
+            
+            setJMenuBar(menuBar);
+            
+            //Lyssnare f�r menyknapparna
+            /*startActionItem.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
             	System.out.println("Starta spelet h�r");
+                }
             }
-        }
-        );
-		stopActionItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            );
+            stopActionItem.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
             	System.out.println("ev. stoppa spelet h�r");
+                }
             }
-        }
-        );
-		exitActionItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            );*/
+            exitActionItem.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
             	System.exit(DISPOSE_ON_CLOSE);
+                }
             }
-        }
-        );
+            );
 
 	}
 	

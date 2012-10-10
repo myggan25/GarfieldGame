@@ -1,9 +1,10 @@
 package garfieldgame;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Map {
-	private final int lowDefaultXCoordObstacle, highDefaultXCoordObstacle, groundXCoord;
+	private final int lowDefaultYCoordObstacle, highDefaultYCoordObstacle, midDefaultYCoordObstacle, groundXCoord;
 	private final int mapLength;
 	private final int mapHeight;
 	private Obstacle obstacle;
@@ -16,8 +17,9 @@ public class Map {
 	public Map(int length, int height,int visibleWidth){
 		this.mapHeight=height;
 		this.mapLength=length;
-                lowDefaultXCoordObstacle=height-100;
-                highDefaultXCoordObstacle=height-160;
+                lowDefaultYCoordObstacle=height-100;
+                highDefaultYCoordObstacle=height-300;
+                midDefaultYCoordObstacle=height-160;
                 groundXCoord=height;
 		leftBorder=0;
 		rightBorder=visibleWidth;
@@ -27,7 +29,7 @@ public class Map {
 		/****************************
 		 * Dessa saker �r i testsyfte
 		 ****************************/
-                createMap1();
+                createMap3();
                 
                 
 		//obstacle = new Obstacle(100, 100, 500, lowDefaultXCoordObstacle);
@@ -49,27 +51,62 @@ public class Map {
 	
 	public void createMap1(){
 		//Skapa bana 1
-            powerbottles.add(new Powerbottle(20, 10, 200, 300));
-            powerbottles.add(new Powerbottle(20, 10, 500, 300));
-            powerbottles.add(new Powerbottle(20, 10, 700, 300));
-            powerbottles.add(new Powerbottle(20, 10, 1200, 300));
-            powerbottles.add(new Powerbottle(20, 10, 1400, 300));
-                
-            obstacles.add(new Obstacle(100, 100, 400, highDefaultXCoordObstacle));
-            obstacles.add(new Obstacle(100, 500, 700, lowDefaultXCoordObstacle));
-            obstacles.add(new Obstacle(100, 100, 1000, highDefaultXCoordObstacle));
-            obstacles.add(new Obstacle(100, 100, 1300, lowDefaultXCoordObstacle));
-            obstacles.add(new Obstacle(100, 100, 1600, lowDefaultXCoordObstacle));
-            obstacles.add(new Obstacle(100, 100, 2000, highDefaultXCoordObstacle));
-            obstacles.add(new Obstacle(100, 100, 2100, lowDefaultXCoordObstacle));
-            obstacles.add(new Obstacle(100, 100, 2500, highDefaultXCoordObstacle));
-            obstacles.add(new Obstacle(100, 500, 2900, lowDefaultXCoordObstacle));
-            obstacles.add(new Obstacle(100, 100, 3500, highDefaultXCoordObstacle));
-            obstacles.add(new Obstacle(100, 100, 3600, lowDefaultXCoordObstacle));
-            obstacles.add(new Obstacle(100, 100, 3800, lowDefaultXCoordObstacle));
-            obstacles.add(new Obstacle(100, 100, 4000, highDefaultXCoordObstacle));
-            obstacles.add(new Obstacle(100, 100, 4100, lowDefaultXCoordObstacle));
+            for(int i=0;i<300;i++){
+                powerbottles.add(new Powerbottle(20, 10, 950+i*300, 300));
+            }
+            
+            for(int i=0;i<100;i++){
+                obstacles.add(new Obstacle(100, 100, i*900+1300, lowDefaultYCoordObstacle));
+            }
+            for(int i=0;i<100;i++){
+                obstacles.add(new Obstacle(100, 100, i*900+1600, midDefaultYCoordObstacle));
+            }
+            for(int i=0;i<100;i++){
+                obstacles.add(new Obstacle(100, 100, i*900+1900, highDefaultYCoordObstacle));
+            }
+            
+            
 	}
+        public void createMap2(){
+            powerbottles.add(new Powerbottle(20, 10, 1300, 300));
+            powerbottles.add(new Powerbottle(20, 10, 1500, 300));
+            powerbottles.add(new Powerbottle(20, 10, 1700, 300));
+            powerbottles.add(new Powerbottle(20, 10, 2000, 300));
+            powerbottles.add(new Powerbottle(20, 10, 2400, 300));
+                
+            
+            obstacles.add(new Obstacle(100, 100, 1600, lowDefaultYCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 1900, highDefaultYCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 2200, lowDefaultYCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 2400, midDefaultYCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 2700, highDefaultYCoordObstacle));
+            obstacles.add(new Obstacle(100, 500, 3000, lowDefaultYCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 3500, highDefaultYCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 3600, midDefaultYCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 3800, lowDefaultYCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 4500, lowDefaultYCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 4900, midDefaultYCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 5300, highDefaultYCoordObstacle));
+            obstacles.add(new Obstacle(100, 100, 5400, lowDefaultYCoordObstacle));
+        }
+        private Obstacle createObstacle(int xCoord){
+            Random generator = new Random();
+            int height = 50+generator.nextInt(100);
+            return new Obstacle(height,50+generator.nextInt(100),xCoord,generator.nextInt(this.mapHeight-height));
+        }
+        private Powerbottle createPowerbottle(int xCoord){
+            Random generator = new Random();
+            return new Powerbottle(20, 10, xCoord, generator.nextInt(this.mapHeight));
+        }
+        public void createMap3(){
+            for(int i=0;i<300;i++){
+                powerbottles.add(createPowerbottle(i*120+1200));
+            }
+            for(int i=0;i<300;i++){
+                obstacles.add(createObstacle(i*170+1000));
+            }
+            
+        }
 	
 	/*public boolean checkIfObstacleOnScreen(){
 		//Kolla om det finns n�got hinder p� sk�rmen just d�

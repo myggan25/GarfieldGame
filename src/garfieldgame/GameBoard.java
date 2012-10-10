@@ -9,6 +9,7 @@ public class GameBoard {
 	private Map map;
 	private ArrayList<Obstacle> obstacles;
 	private ArrayList<Powerbottle> powerbottles;
+        private Boolean gameOver;
 
         
 	
@@ -22,6 +23,7 @@ public class GameBoard {
             //addPlayer(player);
             obstacles = new ArrayList<Obstacle>();
             powerbottles = new ArrayList<Powerbottle>();
+            gameOver = false;
 		
 		/*Tilldela h�jd och bredd p� spelplanen
 		 * 
@@ -30,6 +32,14 @@ public class GameBoard {
 		 * Skapa spelplanen och Gustaf
 		 */
 	}
+        
+        public void reset(){
+            this.map = new Map(width*50, height, width);
+            player  = new Player(100, 60, 50, 500); 
+            obstacles = new ArrayList<Obstacle>();
+            powerbottles = new ArrayList<Powerbottle>();
+            gameOver = false;
+        }
 	
 	public void tick(){
 		//anropa GameHandlers tick f�r att �ndra spelet, dvs flytta spelplanen framm�t
@@ -113,13 +123,21 @@ public class GameBoard {
 	 * SETTERS
 	 ---------*/
 	
-	private void addPlayer(Player player){
+	/*private void addPlayer(Player player){
 		this.player = player;
-	}
+	}*/
+        
+        public void setGameOver(Boolean gameOver){
+            this.gameOver = gameOver;
+        }
 	
 	/*---------
 	 * GETTERS
 	 ---------*/
+        public boolean isGameOver(){
+            return gameOver;
+        }
+        
         public int getGroundHeight(){
             return groundHeight;
         }

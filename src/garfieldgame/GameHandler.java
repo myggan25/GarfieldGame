@@ -12,17 +12,11 @@ public class GameHandler {
             for(Obstacle obstacle : board.getObstacles()){
                 distanceFromObject = landOnObject(board.getPlayer(), obstacle);
                 if(distanceFromObject!=-1 && board.getPlayer().getStatus()==PlayerStatus.FALLING){
-                    System.out.println("avstånd: " + distanceFromObject);
                     board.getPlayer().landOnObject(distanceFromObject);
                 }
-                /*else if(emptyUnder(board.getPlayer(), obstacle) && board.getPlayer().getStatus()==PlayerStatus.STANDING){
-                    board.getPlayer().setStatus(PlayerStatus.FALLING);
-                }*/
                 if(intersects(board.getPlayer(),obstacle)){
                     //System.out.println("dö");
-                    
-                    //board.getPlayer().setStatus(PlayerStatus.STANDING);
-                    //board.getPlayer().landOnObject();
+                    board.setGameOver(true);
                 }
             }
         }
@@ -30,14 +24,20 @@ public class GameHandler {
         if(distanceFromGround!=-1 && board.getPlayer().getStatus()==PlayerStatus.FALLING){
             board.getPlayer().landOnObject(distanceFromGround);
         }
-        if(!emptyUnder(board) && board.getPlayer().getStatus()==PlayerStatus.STANDING){
-            board.getPlayer().fall();
+        if(emptyUnder(board) && board.getPlayer().getStatus()==PlayerStatus.STANDING){
+            //board.getPlayer().setStatus(PlayerStatus.FALLING);
+            if(distanceFromGround!=-1){
+                board.getPlayer().landOnObject(distanceFromGround);
+            }
+            else{
+                board.getPlayer().fall();
+            }
         }
         
         if(!board.getPowerbottles().isEmpty()){
             for(Powerbottle bottle : board.getPowerbottles()){
                 if(intersects(board.getPlayer(),bottle)){
-                    System.out.println("träff bottle");
+                    //System.out.println("träff bottle");
                     tempBottle = bottle;
                     //board.removeBottleFromBoard(bottle);
                 }
@@ -52,13 +52,13 @@ public class GameHandler {
         
 	/***
          * Returns the distance in pixels to an object below.
-         * If more than 10 it returns -1
+         * If more than 15 it returns -1
          */
         private static int landOnObject(BoardObject player, BoardObject object){
             //System.out.println((player.getYCoord()+player.getHeight()));
             //System.out.println(object.getYCoord());
             if(player.getXCoord()<=object.getXCoord()+object.getWidth() && player.getXCoord()+player.getWidth()>=object.getXCoord() &&
-                    player.getYCoord()+player.getHeight()+10>=object.getYCoord() && player.getYCoord()+player.getHeight()<=object.getYCoord()){
+                    player.getYCoord()+player.getHeight()+15>=object.getYCoord() && player.getYCoord()+player.getHeight()<=object.getYCoord()){
                 //System.out.println(-(player.getYCoord()+player.getHeight()-object.getYCoord()));
                 return -(player.getYCoord()+player.getHeight()-object.getYCoord()+1);
             }
@@ -74,31 +74,17 @@ public class GameHandler {
                     return false;
                 }
             }
-                return true;
-            
-            /*for(Obstacle obstacle : board.getObstacles()){
-                if(player.getXCoord()<=obstacle.getXCoord()+obstacle.getWidth() && player.getXCoord()+player.getWidth()>=obstacle.getXCoord() &&
-                        player.getYCoord()+player.getHeight()>=obstacle.getYCoord()){
-                    System.out.println("träff");
-                    return false;
-                }
-            }
             if(player.getYCoord()+player.getHeight()==board.getHeight()){
-                System.out.println("player " + (player.getYCoord()+player.getHeight()));
-                System.out.println("board " + board.getHeight());
-                if(player.getYCoord()+player.getHeight()>=board.getHeight()){
-                    //System.out.println("ok");
-                }
                 return false;
             }
-            return true;*/
+            return true;
         }
          /***
          * Returns the distance in pixels to the ground below
-         * If more than 10 it returns -1
+         * If more than 15 it returns -1
          */
         private static int landOnGround(GameBoard board){
-            if(board.getPlayer().getYCoord()+board.getPlayer().getHeight()+10>=board.getHeight() &&
+            if(board.getPlayer().getYCoord()+board.getPlayer().getHeight()+15>=board.getHeight() &&
                     board.getPlayer().getYCoord()+board.getPlayer().getHeight()<=board.getHeight()){
                 return -(board.getPlayer().getYCoord()+board.getPlayer().getHeight()-board.getHeight());
             }

@@ -78,21 +78,29 @@ public class Player implements BoardObject {
 	}
 	
 	public void crouch(){
-		if (crouchStatus.equals(PlayerCrouchStatus.STANDING )){
+		if (crouchStatus.equals(PlayerCrouchStatus.STANDING)){// && status.equals(PlayerStatus.STANDING)){
 			this.height = this.height/2;
 			this.yCoord = this.yCoord + this.height;
                         crouchStatus=PlayerCrouchStatus.CROUCHING;
-                        System.out.println("okokok");
+                        //System.out.println("okokok");
 		}
+                /*else if(crouchStatus.equals(PlayerCrouchStatus.STANDING) && (status.equals(PlayerStatus.FALLING) || status.equals(PlayerStatus.JUMPING))){
+                    this.height = this.height/2;
+                    crouchStatus=PlayerCrouchStatus.CROUCHING;
+                }*/
 		//komprimera objectet
 	}
 	
 	public void unCrouch(){
-		if (crouchStatus.equals(PlayerCrouchStatus.CROUCHING)){
+		if (crouchStatus.equals(PlayerCrouchStatus.CROUCHING)){//&& status.equals(PlayerStatus.STANDING)){
                     this.yCoord -= this.height;
                     this.height = this.height*2;
                     crouchStatus=PlayerCrouchStatus.STANDING;
 		}
+                /* else if(crouchStatus.equals(PlayerCrouchStatus.CROUCHING) && (status.equals(PlayerStatus.FALLING) || status.equals(PlayerStatus.JUMPING))){
+                    this.height = this.height*2;
+                    crouchStatus=PlayerCrouchStatus.STANDING;
+                }*/
 	}
         
         public void landOnObject(int distanceToObject){
@@ -118,6 +126,9 @@ public class Player implements BoardObject {
 	 **********/
         public PlayerStatus getStatus(){
             return status;
+        }
+        public PlayerCrouchStatus getCrouchStatus(){
+            return crouchStatus;
         }
 	public int getWidth(){
 		return width;
