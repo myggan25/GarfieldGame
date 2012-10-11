@@ -29,7 +29,7 @@ public class Map {
 		/****************************
 		 * Dessa saker �r i testsyfte
 		 ****************************/
-                createMap3();
+                createMap2();
                 
                 
 		//obstacle = new Obstacle(100, 100, 500, lowDefaultXCoordObstacle);
@@ -73,6 +73,17 @@ public class Map {
             powerbottles.add(new Powerbottle(20, 10, 1700, 300));
             powerbottles.add(new Powerbottle(20, 10, 2000, 300));
             powerbottles.add(new Powerbottle(20, 10, 2400, 300));
+            powerbottles.add(new Powerbottle(20, 10, 2700, 300));
+            powerbottles.add(new Powerbottle(20, 10, 2900, 300));
+            powerbottles.add(new Powerbottle(20, 10, 3300, 300));
+            powerbottles.add(new Powerbottle(20, 10, 3400, 300));
+            powerbottles.add(new Powerbottle(20, 10, 3700, 300));
+            powerbottles.add(new Powerbottle(20, 10, 4000, 300));
+            powerbottles.add(new Powerbottle(20, 10, 4300, 300));
+            powerbottles.add(new Powerbottle(20, 10, 4600, 300));
+            powerbottles.add(new Powerbottle(20, 10, 4900, 300));
+            powerbottles.add(new Powerbottle(20, 10, 5300, 300));
+            powerbottles.add(new Powerbottle(20, 10, 5700, 300));
                 
             
             obstacles.add(new Obstacle(100, 100, 1600, lowDefaultYCoordObstacle));

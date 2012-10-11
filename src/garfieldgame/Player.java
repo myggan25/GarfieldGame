@@ -27,9 +27,10 @@ public class Player implements BoardObject {
                 status=PlayerStatus.STANDING;
                 crouchStatus=PlayerCrouchStatus.STANDING;
                 score = 0;
-                drunkValue = 0;
+                drunkValue = 1;
                 wobbleValue = 0;
                 wobbleCounter = 0;
+                wobble=PlayerWobble.FORWARDFRONT;
                 
         }    
         public void setStatus(PlayerStatus status){
@@ -57,20 +58,14 @@ public class Player implements BoardObject {
             }
             if(wobble==PlayerWobble.FORWARDFRONT || wobble==PlayerWobble.FORWARDBACK){
                 wobbleCounter++;
-                wobbleValue+=20;
+                wobbleValue++;
+                //xCoord+=20;
             }
             else if(wobble==PlayerWobble.BACKWARDFRONT || wobble==PlayerWobble.BACKWARDBACK){
                 wobbleCounter--;
-                wobbleValue-=20;
+                //xCoord-=20;
+                wobbleValue--;
             }
-            /*if(wobbleCounter<drunkValue){
-                wobbleCounter++;
-                wobbleValue++;
-            }
-            else{
-                wobbleCounter=0;
-                wobbleValue=0;
-            }*/
         }
         private void wobbleForward(){
             
@@ -82,6 +77,7 @@ public class Player implements BoardObject {
         public void takeAction(){
             //System.out.println(status);
             score++;
+            increaseWobble();
             if (status.equals(PlayerStatus.JUMPING)){
 		jump();
             }

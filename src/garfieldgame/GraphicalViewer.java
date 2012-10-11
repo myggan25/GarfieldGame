@@ -69,6 +69,8 @@ public class GraphicalViewer extends JComponent implements BoardListener {
 	
 	private void paintPlayer(Graphics2D g2){
 		//Rita ut spelaren
+            System.out.println(gameBoard.getPlayer().getXCoord());
+           // System.out.println(gameBoard.getPlayer().get)
 		final Area playerArea = new Area(new Rectangle2D.Float(
 				gameBoard.getPlayer().getXCoord(),gameBoard.getPlayer().getYCoord(),
 				gameBoard.getPlayer().getWidth(),gameBoard.getPlayer().getHeight()));		
