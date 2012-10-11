@@ -16,6 +16,7 @@ public class Player implements BoardObject {
         private int wobbleValue;
         private int wobbleCounter;
         private boolean wobbleForward;
+        private PlayerWobble wobble;
 	
 	
 	public Player(int height, int width, int xCoord, int yCoord){
@@ -38,18 +39,38 @@ public class Player implements BoardObject {
             score++;
         }
         private void increaseWobble(){
-            if(wobbleCounter<drunkValue){
+            if(wobbleCounter>=drunkValue || wobbleCounter <=-drunkValue ){
+                if(wobble==PlayerWobble.FORWARDFRONT){
+                    wobble=PlayerWobble.BACKWARDFRONT;
+                }
+                else if(wobble==PlayerWobble.BACKWARDBACK){
+                    wobble=PlayerWobble.FORWARDFRONT;
+                }
+            }
+            else if(wobbleCounter==0){
+                if(wobble==PlayerWobble.BACKWARDFRONT){
+                    wobble=PlayerWobble.BACKWARDBACK;
+                }
+                else if(wobble==PlayerWobble.FORWARDBACK){
+                    wobble=PlayerWobble.FORWARDFRONT;
+                }
+            }
+            if(wobble==PlayerWobble.FORWARDFRONT || wobble==PlayerWobble.FORWARDBACK){
+                wobbleCounter++;
+                wobbleValue+=20;
+            }
+            else if(wobble==PlayerWobble.BACKWARDFRONT || wobble==PlayerWobble.BACKWARDBACK){
+                wobbleCounter--;
+                wobbleValue-=20;
+            }
+            /*if(wobbleCounter<drunkValue){
                 wobbleCounter++;
                 wobbleValue++;
             }
             else{
                 wobbleCounter=0;
                 wobbleValue=0;
-                if(wobbleForward)
-                    wobbleForward=false;
-                else
-                    wobbleForward=true;
-            }
+            }*/
         }
         private void wobbleForward(){
             
@@ -209,7 +230,7 @@ public class Player implements BoardObject {
 	}
 	
 	public int getXCoord(){
-		return xCoord;
+		return xCoord+wobbleValue;
 	}
 	
 	public int getYCoord(){
