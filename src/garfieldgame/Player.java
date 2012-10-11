@@ -15,7 +15,6 @@ public class Player implements BoardObject {
         private int drunkValue;
         private int wobbleValue;
         private int wobbleCounter;
-        private boolean wobbleForward;
         private PlayerWobble wobble;
 	
 	

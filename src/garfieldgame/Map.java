@@ -29,7 +29,7 @@ public class Map {
 		/****************************
 		 * Dessa saker �r i testsyfte
 		 ****************************/
-                createMap2();
+                createMap3();
                 
                 
 		//obstacle = new Obstacle(100, 100, 500, lowDefaultXCoordObstacle);
@@ -131,6 +131,14 @@ public class Map {
             
             obstacles.add(new Obstacle(100, 100, 1600, lowDefaultYCoordObstacle));
             obstacles.add(new Obstacle(100, 100, 1900, highDefaultYCoordObstacle));
+        }
+        public void createMap5(){
+            for(int i=0;i<300;i++){
+                obstacles.add(new Obstacle(100, 100, i*300, highDefaultYCoordObstacle+10));
+            }
+            for(int i=0;i<300;i++){
+                powerbottles.add(new Powerbottle(20,10,i*300,500));
+            }
         }
         
         public boolean obstaclesLeft(){
