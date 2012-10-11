@@ -47,12 +47,14 @@ public class Frame extends JFrame {
 		public void actionPerformed(ActionEvent e){
 			//Utf�r balanskorektion �t h�ger
 			System.out.println("h�ger");
+                        board.getPlayer().balanceRight();
 		}
 	};
 	final Action balanceLeft = new AbstractAction()  {
 		public void actionPerformed(ActionEvent e){
 			//Utf�r balanskorektion �t v�nster
 			System.out.println("v�nster");
+                        board.getPlayer().balanceLeft();
 		}
 	};	
 	

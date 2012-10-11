@@ -36,7 +36,7 @@ public class Player implements BoardObject {
             this.status = status;
         }
         private void increaseScore(){
-            score++;
+            score+=drunkValue;
         }
         private void increaseWobble(){
             if(wobbleCounter>=drunkValue || wobbleCounter <=-drunkValue ){
@@ -55,27 +55,23 @@ public class Player implements BoardObject {
                     wobble=PlayerWobble.FORWARDFRONT;
                 }
             }
-            if(wobble==PlayerWobble.FORWARDFRONT || wobble==PlayerWobble.FORWARDBACK){
-                wobbleCounter++;
-                wobbleValue++;
-                //xCoord+=20;
+            if(drunkValue>5){
+                if(wobble==PlayerWobble.FORWARDFRONT || wobble==PlayerWobble.FORWARDBACK){
+                    wobbleCounter++;
+                    wobbleValue++;
+                    //xCoord+=20;
+                }
+                else if(wobble==PlayerWobble.BACKWARDFRONT || wobble==PlayerWobble.BACKWARDBACK){
+                    wobbleCounter--;
+                    //xCoord-=20;
+                    wobbleValue--;
+                }
             }
-            else if(wobble==PlayerWobble.BACKWARDFRONT || wobble==PlayerWobble.BACKWARDBACK){
-                wobbleCounter--;
-                //xCoord-=20;
-                wobbleValue--;
-            }
-        }
-        private void wobbleForward(){
-            
-        }
-        private void wobbleBackward(){
-            
         }
         
         public void takeAction(){
             //System.out.println(status);
-            score++;
+            increaseScore();
             increaseWobble();
             if (status.equals(PlayerStatus.JUMPING)){
 		jump();
@@ -187,10 +183,16 @@ public class Player implements BoardObject {
 	
 	public void balanceLeft(){
 		//balanskorrigera �t v�nster, dvs f� objectet att luta �t v�nster
+            if(wobbleValue+xCoord>0){
+                wobbleValue-=5;
+            }
 	}
 	
 	public void balanceRight(){
 		//balanskorrigera �t h�ger, dvs f� objectet att luta �t h�ger
+            if(wobbleValue+xCoord<500){
+                wobbleValue+=5;
+            }
 	}
         public void increasPowerbottles(){
             drunkValue++;

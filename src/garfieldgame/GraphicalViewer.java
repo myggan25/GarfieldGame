@@ -49,8 +49,8 @@ public class GraphicalViewer extends JComponent implements BoardListener {
             //Shape outline = tl.getOutline(null);
             g2.setPaint(new Color(255,255,255));
             g2.setFont(new Font("Arial", Font.BOLD, 25));
-            g2.drawString(Integer.toString(gameBoard.getPlayer().getScore()),gameBoard.getWidth()-80, 20);
-            g2.drawString(Integer.toString(gameBoard.getPlayer().getPowerbottles()),gameBoard.getWidth()-140, 20);
+            g2.drawString(Integer.toString(gameBoard.getPlayer().getScore()),gameBoard.getWidth()-100, 20);
+            g2.drawString(Integer.toString(gameBoard.getPlayer().getPowerbottles()),gameBoard.getWidth()-200, 20);
             /*g2.setStroke(new BasicStroke(2.5f));
             g2.setColor(Color.WHITE);
             g2.draw(outline);*/
