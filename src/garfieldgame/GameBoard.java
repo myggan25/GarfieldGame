@@ -16,11 +16,7 @@ public class GameBoard {
             this.width=width;
             this.height=height;
             this.groundHeight=height/10;
-            this.map = new Map(width*50, height, width);
-            player  = new Player(100, 60, 50, 500); 
-            obstacles = new ArrayList<Obstacle>();
-            powerbottles = new ArrayList<Powerbottle>();
-            gameOver = false;
+            this.reset();
 	}
         
         public void reset(){
@@ -35,7 +31,7 @@ public class GameBoard {
             //Skickar med ett spelbräde till gamehandler för att få saker att hända på spelbrädet
             GameHandler.tick(this);
             //Spelaren utför saker på brädet    
-            player.takeAction(); 
+            //player.takeAction(); 
             //Säger åt lyssnare att ändringar har skett
             notifyListeners();
 	}

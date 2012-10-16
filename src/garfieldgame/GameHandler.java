@@ -10,12 +10,12 @@ public class GameHandler {
     public static void tick(GameBoard board){
         int distanceFromGround;
         board.moveWholeBoard();
+        board.getPlayer().takeAction();
         landOrCollideWithObstacle(board);
         distanceFromGround = landOnGround(board);
         ifOnGroundLand(board, distanceFromGround);
         fallFromObstacle(board, distanceFromGround);
         hitPowerbottle(board);
-        
     }
     
     /***
@@ -130,5 +130,4 @@ public class GameHandler {
             }
             return false;   
         }
-
 }

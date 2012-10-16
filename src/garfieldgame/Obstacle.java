@@ -2,15 +2,12 @@ package garfieldgame;
 
 public class Obstacle implements BoardObject {
 	private int height, width, xCoord, yCoord;
-	private boolean inBoard;
-	
-	
+        
 	public Obstacle(int height, int width, int xCoord, int yCoord){
             this.height=height;
             this.width=width;
             this.xCoord=xCoord;
             this.yCoord=yCoord;
-            this.inBoard = false;
 	}
 	
 	public void moveLeft(){

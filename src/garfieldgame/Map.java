@@ -13,7 +13,6 @@ public class Map {
         private ArrayList<Obstacle> obstacles;
         private ArrayList<Powerbottle> powerbottles;
 	
-	
 	public Map(int length, int height, int visibleWidth){
 		this.mapHeight=height;
 		this.mapLength=length;
