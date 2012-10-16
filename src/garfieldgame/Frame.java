@@ -12,8 +12,7 @@ public class Frame extends JFrame {
 	
         final Action superJump = new AbstractAction()  {
 		public void actionPerformed(ActionEvent e){
-			//Utf�r hopp
-                    //board.getMap().getObstacle().setHeight(board.getMap().getObstacle().getHeight()+1);
+			//Superhoppa
                         if(!(board.getPlayer().getStatus().equals(PlayerStatus.FALLING) || board.getPlayer().getStatus().equals(PlayerStatus.SUPERJUMPING) ||
                                 board.getPlayer().getStatus().equals(PlayerStatus.JUMPING) || board.getPlayer().getCrouchStatus().equals(PlayerCrouchStatus.CROUCHING))){
                             board.getPlayer().superJump();
@@ -22,8 +21,7 @@ public class Frame extends JFrame {
 	};
 	final Action jump = new AbstractAction()  {
 		public void actionPerformed(ActionEvent e){
-			//Utf�r hopp
-                    //board.getMap().getObstacle().setHeight(board.getMap().getObstacle().getHeight()+1);
+			//Hoppa
                         if(!(board.getPlayer().getStatus().equals(PlayerStatus.FALLING) || board.getPlayer().getStatus().equals(PlayerStatus.SUPERJUMPING) ||
                                 board.getPlayer().getStatus().equals(PlayerStatus.JUMPING) || board.getPlayer().getCrouchStatus().equals(PlayerCrouchStatus.CROUCHING))){
                             board.getPlayer().jump();
@@ -32,71 +30,54 @@ public class Frame extends JFrame {
 	};
 	final Action crouch = new AbstractAction()  {
 		public void actionPerformed(ActionEvent e){
-			//Utf�r ducka
+			//Ducka
 			board.getPlayer().crouch();
 		}
 	};
         final Action uncrouch = new AbstractAction()  {
 		public void actionPerformed(ActionEvent e){
-			//Utf�r ducka
+			//Reser på sig efter att ha duckat
 			board.getPlayer().unCrouch();
 		}
 	};
 
-	final Action balanceRight = new AbstractAction()  {
+	final Action goRight = new AbstractAction()  {
 		public void actionPerformed(ActionEvent e){
-			//Utf�r balanskorektion �t h�ger
-			System.out.println("h�ger");
-                        board.getPlayer().balanceRight();
+			//Går åt höger
+                        board.getPlayer().goRight();
 		}
 	};
-	final Action balanceLeft = new AbstractAction()  {
+	final Action goLeft = new AbstractAction()  {
 		public void actionPerformed(ActionEvent e){
-			//Utf�r balanskorektion �t v�nster
-			System.out.println("v�nster");
-                        board.getPlayer().balanceLeft();
+			//Går åt vänster
+                        board.getPlayer().goLeft();
 		}
 	};	
 	
 	public Frame(GameBoard board){
             super("Garfield's journey");
             this.board = board;
-            gameArea = new GraphicalViewer(board);
-            
+            gameArea = new GraphicalViewer(board);  
             createMenu();
-            //createKeyBoardListeners();
-            gameArea = new GraphicalViewer(board);
-        
-            this.add(gameArea);
-            //board.addBoardListener(gameArea);
 
-            gameArea.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("UP"),
-                    "jump");
-            gameArea.getActionMap().put("jump",
-                    jump);
-            gameArea.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("SPACE"),
-                    "superjump");
-            gameArea.getActionMap().put("superjump",
-                    superJump);
-            gameArea.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("DOWN"),
-                    "crouchPressed");
-            gameArea.getActionMap().put("crouchPressed",
-                    crouch);
+            gameArea.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("UP"), "jump");
+            gameArea.getActionMap().put("jump", jump);
             
-            gameArea.getInputMap().put(KeyStroke.getKeyStroke("released DOWN"),
-                            "crouchReleased");
-            gameArea.getActionMap().put("crouchReleased",
-                    uncrouch);
+            gameArea.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("SPACE"), "superjump");
+            gameArea.getActionMap().put("superjump", superJump);
             
+            gameArea.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("DOWN"), "crouchPressed");
+            gameArea.getActionMap().put("crouchPressed", crouch);
             
-            gameArea.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("RIGHT"),
-                    "right");
-            gameArea.getActionMap().put("right",
-                    balanceRight);
-            gameArea.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("LEFT"),
-                    "left");
-            gameArea.getActionMap().put("left",
-                    balanceLeft);
+            gameArea.getInputMap().put(KeyStroke.getKeyStroke("released DOWN"), "crouchReleased");
+            gameArea.getActionMap().put("crouchReleased", uncrouch);
+            
+            gameArea.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("RIGHT"), "right");
+            gameArea.getActionMap().put("right", goRight);
+            
+            gameArea.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("LEFT"), "left");
+            gameArea.getActionMap().put("left", goLeft);
+            
             board.addBoardListener(gameArea);
             this.add(gameArea);
             this.setSize(gameArea.getPreferredSize());
@@ -106,7 +87,7 @@ public class Frame extends JFrame {
 	}
 	
 	public void updateFrame(GameBoard board){
-		//S�tt in en ny board och g�r den visible
+		//Sätt in en ny board och gör den visible
 		this.board = board;
                 Object[] options = {"Restart", "Exit"};
                 if(board.isGameOver()){
@@ -126,7 +107,7 @@ public class Frame extends JFrame {
 	
 	
 	private void createMenu(){
-            //Skapa meny f�r start och stopp
+            //Skapa meny för exitknapp
             final JMenuBar menuBar = new JMenuBar();
 		
             final JMenu gameMenu = new JMenu("Game");

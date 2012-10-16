@@ -2,28 +2,51 @@ package garfieldgame;
 
 public class GameHandler {
 
+    public GameHandler(){}
     
+ /***
+  * Utför alla händelser på spelplanen
+  */
     public static void tick(GameBoard board){
+        int distanceFromGround;
         board.moveWholeBoard();
-        Powerbottle tempBottle = null;
-        int distanceFromObject,distanceFromGround;
+        landOrCollideWithObstacle(board);
+        distanceFromGround = landOnGround(board);
+        ifOnGroundLand(board, distanceFromGround);
+        fallFromObstacle(board, distanceFromGround);
+        hitPowerbottle(board);
+        
+    }
+    
+    /***
+     * Undersök för alla hinder om spelaren krockar med det.
+     * Om den krockar med det åvanifrån så se till att den landar,
+     * annars vid krock från övriga ställen se till så den dör.
+     */
+    private static void landOrCollideWithObstacle(GameBoard board){
+        int distanceFromObject;
         if(!board.getObstacles().isEmpty()){
-            //System.out.println("ej tom");
             for(Obstacle obstacle : board.getObstacles()){
                 distanceFromObject = landOnObject(board.getPlayer(), obstacle);
                 if(distanceFromObject!=-1 && board.getPlayer().getStatus()==PlayerStatus.FALLING){
                     board.getPlayer().landOnObject(distanceFromObject);
                 }
                 if(intersects(board.getPlayer(),obstacle)){
-                    //System.out.println("dö");
+                    //Spelaren dör
                     board.setGameOver(true);
                 }
             }
         }
-        distanceFromGround = landOnGround(board);
+    }
+    
+    private static void ifOnGroundLand(GameBoard board, int distanceFromGround){
+       // int distanceFromGround = landOnGround(board);
         if(distanceFromGround!=-1 && board.getPlayer().getStatus()==PlayerStatus.FALLING){
             board.getPlayer().landOnObject(distanceFromGround);
         }
+    }
+    
+    private static void fallFromObstacle(GameBoard board, int distanceFromGround){
         if(emptyUnder(board) && board.getPlayer().getStatus()==PlayerStatus.STANDING){
             if(distanceFromGround!=-1){
                 board.getPlayer().landOnObject(distanceFromGround);
@@ -32,13 +55,15 @@ public class GameHandler {
                 board.getPlayer().fall();
             }
         }
-        
+    }
+    
+    private static void hitPowerbottle(GameBoard board){
+        Powerbottle tempBottle = null;
         if(!board.getPowerbottles().isEmpty()){
             for(Powerbottle bottle : board.getPowerbottles()){
                 if(intersects(board.getPlayer(),bottle)){
-                    board.getPlayer().increasPowerbottles();
+                    board.getPlayer().increasPowerbottlesCaught();
                     tempBottle = bottle;
-                    //board.removeBottleFromBoard(bottle);
                 }
             }
             board.removeBottleFromBoard(tempBottle);
@@ -54,11 +79,8 @@ public class GameHandler {
          * If more than 15 it returns -1
          */
         private static int landOnObject(BoardObject player, BoardObject object){
-            //System.out.println((player.getYCoord()+player.getHeight()));
-            //System.out.println(object.getYCoord());
             if(player.getXCoord()<=object.getXCoord()+object.getWidth() && player.getXCoord()+player.getWidth()>=object.getXCoord() &&
                     player.getYCoord()+player.getHeight()+15>=object.getYCoord() && player.getYCoord()+player.getHeight()<=object.getYCoord()){
-                //System.out.println(-(player.getYCoord()+player.getHeight()-object.getYCoord()));
                 return -(player.getYCoord()+player.getHeight()-object.getYCoord()+1);
             }
             else{
@@ -78,6 +100,7 @@ public class GameHandler {
             }
             return true;
         }
+        
          /***
          * Returns the distance in pixels to the ground below
          * If more than 15 it returns -1
@@ -92,7 +115,7 @@ public class GameHandler {
             }
         }
 
-        private static boolean intersects(BoardObject obj1,BoardObject obj2){
+        private static boolean intersects(BoardObject obj1, BoardObject obj2){
             int obj1Left,obj1Right,obj1Bottom,obj1Top,obj2Top,obj2Left,obj2Right,obj2Bottom;
             obj1Left=obj1.getXCoord();
             obj1Right=obj1.getXCoord()+obj1.getWidth();

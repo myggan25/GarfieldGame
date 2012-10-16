@@ -1,36 +1,25 @@
 package garfieldgame;
 
 public class Powerbottle implements BoardObject {
-	private int height, width, xCoord, yCoord;//, xCoordMap;
+	private int height, width, xCoord, yCoord;
 	private boolean inBoard;
-	//skapa olika effekter f�r olika powerbottles 
 	
 	public Powerbottle(int height, int width, int xCoord, int yCoord){
 		this.height=height;
 		this.width=width;
 		this.xCoord=xCoord;
-		//this.xCoord=xCoordMap;
 		this.yCoord=yCoord;
 		this.inBoard=false;
 	}
 	
 	public void moveLeft(){
             xCoord-=2;
-		//Flytta flaskan �t v�nster
 	}
-	
-	
-	/*
-	 * Skapa eventuellt flaskor som r�r p� sig i fler riktiningar
-	 */
-	
-	/*
-	 * Skapa olika flaskor som ger olika effekt
-	 */
 
-	/**********
+	/*----------
 	 * GETTERS
 	 **********/
+        
 	public int getWidth(){
 		return width;
 	}
@@ -47,11 +36,7 @@ public class Powerbottle implements BoardObject {
 		return yCoord;
 	}
 	
-	/*public int getXCoordMap(){
-		return xCoordMap;
-	}*/
-	
-	/**********
+	/*----------
 	 * SETTERS
 	 **********/
 	public void setWidth(int width){
@@ -68,13 +53,5 @@ public class Powerbottle implements BoardObject {
 	
 	public void setYCoord(int yCoord){
 		this.yCoord=yCoord;
-	}
-	
-	/*public void setXCoordMap(int xCoordMap){
-		this.xCoordMap=xCoordMap;
-	}
-	public void setInBoard(){
-		this.inBoard=true;
-	}*/
-	
+	}	
 }
