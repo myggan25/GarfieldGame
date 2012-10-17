@@ -3,12 +3,7 @@ package garfieldgame;
 import java.awt.*;
 import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
-import java.awt.Font;
-import java.awt.font.TextLayout;
-
 import javax.swing.*;
-
-import java.util.ArrayList;
 
 public class GraphicalViewer extends JComponent implements BoardListener {
 	
@@ -44,9 +39,9 @@ public class GraphicalViewer extends JComponent implements BoardListener {
         private void paintScore(Graphics2D g2){
             g2.setPaint(new Color(255,255,255));
             g2.setFont(new Font("Arial", Font.BOLD, 25));
-            //Skriver ut poängen på skärmen, -100 är för att flytta in den från kanten
+            //Prints the score on the screen, -100 is to move it from the screen edge
             g2.drawString(Integer.toString(gameBoard.getPlayer().getScore()),gameBoard.getWidth()-100, 20);
-            //Skriver ut antalet fångade powerbottles, -200 är för att flytta in den från kanten
+            //Prints the number of powerbottles caugth, -200 is to move it from the screen edge
             g2.drawString(Integer.toString(gameBoard.getPlayer().getPowerbottles()),gameBoard.getWidth()-200, 20);
         }
         private void paintBackground(Graphics2D g2){
@@ -61,21 +56,21 @@ public class GraphicalViewer extends JComponent implements BoardListener {
         }
 	
 	private void paintPlayer(Graphics2D g2){
-            //Rita ut spelaren
+            //Draws the player
 		final Area playerArea = new Area(new Rectangle2D.Float(
 				gameBoard.getPlayer().getXCoord(),gameBoard.getPlayer().getYCoord(),
 				gameBoard.getPlayer().getWidth(),gameBoard.getPlayer().getHeight()));	
-                //255,69,0 är orange
+                //255,69,0 is orange
 		g2.setPaint(new Color(255,69,0));
 		g2.fill(playerArea);
 	}
 	
 	private void paintObstacle(Graphics2D g2){
-            //Rita ut hinder
+            //Draws the obstacles 
             for(Obstacle obstacle : gameBoard.getObstacles()){
                 final Area obstacleArea = new Area(new Rectangle2D.Float(
                             obstacle.getXCoord(),obstacle.getYCoord(),obstacle.getWidth(),obstacle.getHeight()));
-                //100,100,100 är grå
+                //100,100,100 is grey
                 g2.setPaint(new Color(100,100,100));
                 g2.fill(obstacleArea);
             }
@@ -83,11 +78,11 @@ public class GraphicalViewer extends JComponent implements BoardListener {
 	}
 	
 	private void paintPowerbottle(Graphics2D g2){
-            //Rita ut energiflaska
+            //Draws the powerbottles
             for(Powerbottle bottle : gameBoard.getPowerbottles()){
 		final Area powerbottleArea = new Area(new Rectangle2D.Float(
                         bottle.getXCoord(),bottle.getYCoord(),bottle.getWidth(),bottle.getHeight()));
-                //139,69,19 är brun
+                //139,69,19 is brown
 		g2.setPaint(new Color(139,69,19));
 		g2.fill(powerbottleArea);
             }

@@ -4,9 +4,10 @@ public class GameHandler {
 
     public GameHandler(){}
     
- /***
-  * Utför alla händelser på spelplanen
-  */
+    /**
+     * Perform all events on the GameBoard
+     * @param board 
+     */
     public static void tick(GameBoard board){
         int distanceFromGround;
         board.moveWholeBoard();
@@ -18,10 +19,11 @@ public class GameHandler {
         hitPowerbottle(board);
     }
     
-    /***
-     * Undersök för alla hinder om spelaren krockar med det.
-     * Om den krockar med det åvanifrån så se till att den landar,
-     * annars vid krock från övriga ställen se till så den dör.
+    /**
+     * For all obstacle, check if the player hit it.
+     * If hit happens from above, make sure it lands.
+     * If hit from other direction make sure the player dies.
+     * @param board 
      */
     private static void landOrCollideWithObstacle(GameBoard board){
         int distanceFromObject;
@@ -39,8 +41,7 @@ public class GameHandler {
         }
     }
     
-    private static void ifOnGroundLand(GameBoard board, int distanceFromGround){
-       // int distanceFromGround = landOnGround(board);
+    private static void ifOnGroundLand(GameBoard board, int distanceFromGround){      
         if(distanceFromGround!=-1 && board.getPlayer().getStatus()==PlayerStatus.FALLING){
             board.getPlayer().landOnObject(distanceFromGround);
         }
@@ -56,7 +57,10 @@ public class GameHandler {
             }
         }
     }
-    
+    /**
+     * function that check if player hits powerbottle, if it does remove the bottle
+     * @param board 
+     */
     private static void hitPowerbottle(GameBoard board){
         Powerbottle tempBottle = null;
         if(!board.getPowerbottles().isEmpty()){
@@ -74,10 +78,13 @@ public class GameHandler {
 	 *SANNINGSV�RDEN F�R KOLLISION MED HINDER*
 	 *****************************************/
         
-	/***
-         * Returns the distance in pixels to an object below.
-         * If more than 15 it returns -1
-         */
+         /**
+          * 
+          * @param player
+          * @param object
+          * @return the distance in pixels to an object below.
+          * If more than 15 it returns -1
+          */
         private static int landOnObject(BoardObject player, BoardObject object){
             if(player.getXCoord()<=object.getXCoord()+object.getWidth() && player.getXCoord()+player.getWidth()>=object.getXCoord() &&
                     player.getYCoord()+player.getHeight()+15>=object.getYCoord() && player.getYCoord()+player.getHeight()<=object.getYCoord()){
@@ -87,6 +94,11 @@ public class GameHandler {
                 return -1;
             }
         }
+        /**
+         * 
+         * @param board
+         * @return true if there is no object under
+         */
         private static boolean emptyUnder(GameBoard board){
             Player player = board.getPlayer();
             for(Obstacle obstacle : board.getObstacles()){
@@ -101,8 +113,10 @@ public class GameHandler {
             return true;
         }
         
-         /***
-         * Returns the distance in pixels to the ground below
+        /**
+         * checks the players distance from the ground
+         * @param board
+         * @return the distance in pixels to the ground below
          * If more than 15 it returns -1
          */
         private static int landOnGround(GameBoard board){
@@ -115,6 +129,13 @@ public class GameHandler {
             }
         }
 
+        /**
+         * 
+         * @param obj1
+         * @param obj2
+         * @return true if the objects intersects with each other
+         * else returns false
+         */
         private static boolean intersects(BoardObject obj1, BoardObject obj2){
             int obj1Left,obj1Right,obj1Bottom,obj1Top,obj2Top,obj2Left,obj2Right,obj2Bottom;
             obj1Left=obj1.getXCoord();

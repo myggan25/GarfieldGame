@@ -28,11 +28,8 @@ public class GameBoard {
         }
 	
 	public void tick(){
-            //Skickar med ett spelbräde till gamehandler för att få saker att hända på spelbrädet
+            //Sends a gameboard to the gamehandler to make things happen on the gameboard
             GameHandler.tick(this);
-            //Spelaren utför saker på brädet    
-            //player.takeAction(); 
-            //Säger åt lyssnare att ändringar har skett
             notifyListeners();
 	}
 

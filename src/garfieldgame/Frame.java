@@ -12,7 +12,8 @@ public class Frame extends JFrame {
 	
         final Action superJump = new AbstractAction()  {
 		public void actionPerformed(ActionEvent e){
-			//Superhoppa
+                        //Superjump
+                        //Is only allowed to jump if the player is standing
                         if(!(board.getPlayer().getStatus().equals(PlayerStatus.FALLING) || board.getPlayer().getStatus().equals(PlayerStatus.SUPERJUMPING) ||
                                 board.getPlayer().getStatus().equals(PlayerStatus.JUMPING) || board.getPlayer().getCrouchStatus().equals(PlayerCrouchStatus.CROUCHING))){
                             board.getPlayer().superJump();
@@ -21,7 +22,8 @@ public class Frame extends JFrame {
 	};
 	final Action jump = new AbstractAction()  {
 		public void actionPerformed(ActionEvent e){
-			//Hoppa
+                        //Jump
+                        //Is only allowed to jump if the player is standing
                         if(!(board.getPlayer().getStatus().equals(PlayerStatus.FALLING) || board.getPlayer().getStatus().equals(PlayerStatus.SUPERJUMPING) ||
                                 board.getPlayer().getStatus().equals(PlayerStatus.JUMPING) || board.getPlayer().getCrouchStatus().equals(PlayerCrouchStatus.CROUCHING))){
                             board.getPlayer().jump();
@@ -30,26 +32,26 @@ public class Frame extends JFrame {
 	};
 	final Action crouch = new AbstractAction()  {
 		public void actionPerformed(ActionEvent e){
-			//Ducka
+			//Crouch
 			board.getPlayer().crouch();
 		}
 	};
         final Action uncrouch = new AbstractAction()  {
 		public void actionPerformed(ActionEvent e){
-			//Reser på sig efter att ha duckat
+			//Rises
 			board.getPlayer().unCrouch();
 		}
 	};
 
 	final Action goRight = new AbstractAction()  {
 		public void actionPerformed(ActionEvent e){
-			//Går åt höger
+			//Go rigth
                         board.getPlayer().goRight();
 		}
 	};
 	final Action goLeft = new AbstractAction()  {
 		public void actionPerformed(ActionEvent e){
-			//Går åt vänster
+			//Go left
                         board.getPlayer().goLeft();
 		}
 	};	
@@ -107,7 +109,6 @@ public class Frame extends JFrame {
 	
 	
 	private void createMenu(){
-            //Skapa meny för exitknapp
             final JMenuBar menuBar = new JMenuBar();
 		
             final JMenu gameMenu = new JMenu("Game");

@@ -11,6 +11,7 @@ public class Powerbottle implements BoardObject {
 	}
 	
 	public void moveLeft(){
+            //Move the powerbottle left
             xCoord-=2;
 	}
 

@@ -116,14 +116,14 @@ public class Player implements BoardObject {
         }
 	
 	public void goLeft(){
-            //gränsen 0 är för att man inte ska kunna åka utanför planen
+            //The limit 0 is because you should not be able to go outside the board
             if(wobbleValue+xCoord>0){
                 wobbleValue-=5;
             }
 	}
 	
 	public void goRight(){
-            //gränsen 500 är för att man inte ska kunna gå för långt å höger
+            //The limit 500 is because you should not be able to go to far right
             if(wobbleValue+xCoord<500){
                 wobbleValue+=5;
             }
@@ -134,7 +134,7 @@ public class Player implements BoardObject {
             numberOfPowerBottles++;
         }
         
-        //Öka spelarens totalpoäng
+        //Increase the players totalpoint
         private void increaseScore(){
             score+=drunkValue;
         }
@@ -220,6 +220,4 @@ public class Player implements BoardObject {
 	public void setYCoord(int yCoord){
             this.yCoord=yCoord;
 	}
-	
-	
 }

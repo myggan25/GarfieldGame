@@ -26,7 +26,7 @@ public class Map {
 		powerbottles = new ArrayList<Powerbottle>();
                 
                 /***
-                 * Välj en bana som ska köras med ett nummer mellan 1 och 5.
+                 * Choose a map to run with a number between 1 and 5.
                  * */
                 createMap(3);
 	}
@@ -85,8 +85,8 @@ public class Map {
          * Funktioner för att skapa testbanor
          * ----------------------------*/
         
-        /**
-         * Funktion i testsyfte för att välja bana
+        /*
+         * Function for testing, to choose map
          */
         
         private void createMap(int mapNumber){

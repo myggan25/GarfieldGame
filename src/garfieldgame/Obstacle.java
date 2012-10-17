@@ -11,7 +11,7 @@ public class Obstacle implements BoardObject {
 	}
 	
 	public void moveLeft(){
-            //Flytta hindret åt vänster
+            //Move obstacle left
             xCoord-=2;
             
 	}
