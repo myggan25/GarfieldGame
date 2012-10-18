@@ -1,14 +1,10 @@
 package garfieldgame;
 
 import java.awt.event.ActionEvent;
-
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.Timer;
 
-/**
- * The main menu
- */
 public class Game {
     public static void main(String[] args) {
         final GameBoard board = new GameBoard(1200, 600);
