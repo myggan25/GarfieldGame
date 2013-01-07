@@ -35,6 +35,7 @@ public class Powerbottle implements BoardObject {
         return yCoord;
     }
 
+<<<<<<< HEAD
     /*----------
       * SETTERS
       **********/
@@ -53,4 +54,7 @@ public class Powerbottle implements BoardObject {
     public void setYCoord(int yCoord) {
         this.yCoord = yCoord;
     }
+=======
+
+>>>>>>> Fixat kompletteringen
 }

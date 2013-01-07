@@ -1,9 +1,9 @@
 package garfieldgame;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Map {
+<<<<<<< HEAD
     private final int lowDefaultYCoordObstacle, highDefaultYCoordObstacle, midDefaultYCoordObstacle;
     private int groundXCoord;
     private final int mapLength;
@@ -22,17 +22,33 @@ public class Map {
         midDefaultYCoordObstacle = height - 160;
         groundXCoord = height;
         leftBorder = 0;
+=======
+    private final int mapHeight;
+    private int rightBorder;
+    private ArrayList<Obstacle> obstacles;
+    private ArrayList<Powerbottle> powerbottles;
+
+    public Map(int height, int visibleWidth) {
+        this.mapHeight = height;
+>>>>>>> Fixat kompletteringen
         rightBorder = visibleWidth;
         obstacles = new ArrayList<Obstacle>();
         powerbottles = new ArrayList<Powerbottle>();
 
+<<<<<<< HEAD
          // Choose a map to run with a number between 1 and 5.
         createMap(3);
+=======
+        // Choose a map to run with a number between 1 and 5.
+        //createMap(3);
+        //CreateMap.createMap(this,3);
+>>>>>>> Fixat kompletteringen
     }
 
     public void moveMapLeft() {
         for (Obstacle obstacle : obstacles) {
             obstacle.moveLeft();
+<<<<<<< HEAD
         }
         for (Powerbottle bottle : powerbottles) {
             bottle.moveLeft();
@@ -143,8 +159,23 @@ public class Map {
         }
         for (int i = 0; i < 100; i++) {
             obstacles.add(new Obstacle(100, 100, i * 900 + 1900, highDefaultYCoordObstacle));
+=======
         }
+        for (Powerbottle bottle : powerbottles) {
+            bottle.moveLeft();
+        }
+    }
 
+    public boolean obstaclesLeft() {
+        if (obstacles.isEmpty()) {
+            return false;
+        } else {
+            return true;
+>>>>>>> Fixat kompletteringen
+        }
+    }
+
+<<<<<<< HEAD
 
     }
 
@@ -212,5 +243,59 @@ public class Map {
             powerbottles.add(new Powerbottle(20, 10, i * 300, 500));
         }
     }
+=======
+    /*---------
+      * GETTERS
+      ---------*/
+
+    /**
+     * If an obstacle is about to move into the gameboard,
+     * return it and remove it from the obstacle array
+     */
+    public Obstacle ifInBoardGetObstacle() {
+        Obstacle tempObs;
+        if (obstacles != null) {
+            for (Obstacle obstacle : obstacles) {
+                if (obstacle.getXCoord() < rightBorder) {
+                    tempObs = obstacle;
+                    obstacles.remove(obstacle);
+                    return tempObs;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * If a powerbottle is about to move into the gameboard,
+     * return it and remove it from the powerbottle array
+     */
+    public Powerbottle ifInBoardGetPowerbottle() {
+        Powerbottle tempBottle;
+        if (powerbottles != null) {
+            for (Powerbottle bottle : powerbottles) {
+                if (bottle.getXCoord() < rightBorder) {
+                    tempBottle = bottle;
+                    powerbottles.remove(bottle);
+                    return tempBottle;
+                }
+            }
+        }
+        return null;
+    }
+
+    public void addPowerbottle(Powerbottle bottle){
+        powerbottles.add(bottle);
+    }
+    
+    public void addObstacle(Obstacle obstacle){
+        obstacles.add(obstacle);
+    }
+    public int getHeight(){
+        return mapHeight;
+    }
+
+    
+>>>>>>> Fixat kompletteringen
 
 }
