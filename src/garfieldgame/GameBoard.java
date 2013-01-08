@@ -25,12 +25,8 @@ public class GameBoard {
      * resets the GameBoard if the game starts or restarts
      */
     public void reset() {
-<<<<<<< HEAD
-        this.map = new Map(width * 50, height, width);
-=======
         this.map = new Map(height, width);
         CreateMap.createMap(this.map, 3);
->>>>>>> Fixat kompletteringen
         player = new Player(100, 60, 50, 500);
         obstacles = new ArrayList<Obstacle>();
         powerbottles = new ArrayList<Powerbottle>();
@@ -189,11 +185,7 @@ public class GameBoard {
 
     private void ifEndOfMapCreateNew() {
         if (!obstaclesLeftOnBoard() && !map.obstaclesLeft()) {
-<<<<<<< HEAD
-            map = new Map(width * 50, height, width);
-=======
             map = new Map(height, width);
->>>>>>> Fixat kompletteringen
         }
     }
 

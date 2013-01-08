@@ -35,26 +35,5 @@ public class Powerbottle implements BoardObject {
         return yCoord;
     }
 
-<<<<<<< HEAD
-    /*----------
-      * SETTERS
-      **********/
-    public void setWidth(int width) {
-        this.width = width;
-    }
 
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public void setXCoord(int xCoord) {
-        this.xCoord = xCoord;
-    }
-
-    public void setYCoord(int yCoord) {
-        this.yCoord = yCoord;
-    }
-=======
-
->>>>>>> Fixat kompletteringen
 }
